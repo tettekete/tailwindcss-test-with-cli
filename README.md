@@ -22,5 +22,5 @@ $ docker compose up
 
 `httpd`(Apache) を起動している場合 [localhost](http://localhost/) にアクセスする。
 
-起動していない場合、確認したい `src/` 下のファイルを直接ブラウザで開く。
+起動していない場合、確認したい `docs/` 下のファイルを直接ブラウザで開く。
 
