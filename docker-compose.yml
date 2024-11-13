@@ -1,6 +1,8 @@
 services:
   httpd:
-    image: httpd
+    build:
+      context: ./docker
+      dockerfile: customize-httpd.Dockerfile
     ports:
       - "80:80"
       - "443:443"
