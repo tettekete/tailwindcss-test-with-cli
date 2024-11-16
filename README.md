@@ -30,5 +30,5 @@ GitHub に `push` 済みならば [GitHub Pages](https://tettekete.github.io/tai
 
 デフォルトでは機械的に生成した index.html が表示される。
 
-日本語でカテゴリ分けされたリンク集ページは[こちら](https://tettekete.github.io/tailwindcss-test-with-cli/readme.html)。
+日本語でカテゴリ分けされたリンク集ページは[こちら](https://tettekete.github.io/tailwindcss-test-with-cli/manual-index.html)。
 
