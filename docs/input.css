@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-3xl font-bold text-black;
+  }
+  h2 {
+    @apply text-2xl font-semibold text-gray-800;
+  }
+  h3 {
+    @apply text-lg font-medium text-black;
+  }
+  h4 {
+    @apply text-base font-medium text-black;
+  }
+  a {
+    @apply text-blue-500 underline;
+  }
+  a:hover {
+    @apply text-blue-700;
+  }
+  code {
+	@apply font-mono rounded bg-slate-200 text-slate-800;
+  }
+
+  pre {
+	@apply font-mono rounded bg-slate-200 text-sm text-slate-800 m-2 p-2;
+  }
+
+  p {
+	@apply m-1
+  }
+  ol {
+	@apply list-decimal list-inside
+  }
+  ul {
+	@apply list-disc list-inside
+  }
+}
+
+@layer components {
+  .visible-div {
+    @apply my-4 border-solid border border-black bg-slate-50;
+  }
+  .visible-div2 {
+	 @apply border-solid border border-pink-400 bg-pink-100;
+  }
+}
