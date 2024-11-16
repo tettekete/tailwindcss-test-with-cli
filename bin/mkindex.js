@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// 指定されたディレクトリから再帰的に HTML ファイルを収集
+// 指定されたディレクトリから再帰的に HTML ファイルと markdown ファイルを収集
 function getHtmlFiles(dir, fileList = [])
 {
 	const files = fs.readdirSync(dir);
@@ -18,8 +18,23 @@ function getHtmlFiles(dir, fileList = [])
 		{
 			if( path.relative(dir, filePath) !== 'index.html' )
 			{
-				fileList.push(filePath);
+				fileList.push({
+					path: filePath,
+					title: getTitleFromHTML( filePath )
+				});
 			}
+		}
+		else if( path.extname(file) === '.md' )
+		{
+			const title = getTitleFromMarkdown( filePath )
+			const basename = path.basename( filePath ,'.md' );
+			const path_dir = path.dirname( filePath );
+			const html_path = path.join( path_dir , basename + '.html' );
+
+			fileList.push({
+				path: html_path,
+				title: title
+			});
 		}
 	});
 	return fileList;
@@ -30,8 +45,8 @@ function sortHtmlFilesByDepthAndName(fileList)
 {
 	return fileList.sort((a, b) =>
 	{
-		const depthA = a.split(path.sep).length;
-		const depthB = b.split(path.sep).length;
+		const depthA = a.path.split(path.sep).length;
+		const depthB = b.path.split(path.sep).length;
 
 		if (depthA !== depthB)
 		{
@@ -39,7 +54,7 @@ function sortHtmlFilesByDepthAndName(fileList)
 		}
 		else
 		{
-			return a.localeCompare(b);  // 文字列の昇順でソート
+			return a.path.localeCompare(b.path);  // 文字列の昇順でソート
 		}
 	});
 }
@@ -61,14 +76,44 @@ function getTitleFromHTML( file_path )
 	return undefined;
 }
 
+/**
+ * 一番最初の # のついていない行、または最初の単独の # で始まる行をタイトルとして抽出する
+ * @param {string} file_path 
+ */
+function getTitleFromMarkdown( file_path )
+{
+	const content = fs.readFileSync( file_path ,'utf-8');
+	
+	let tilte = ""
+	const regex = /^#\s+(.+)/;
+	for( let line of content.split(/\r?\n/) )
+	{
+		if( line.length > 0 )
+		{
+			const match = regex.exec( line );
+			if( match )
+			{
+				return match[1];
+			}
+			else
+			{
+				return line;
+			}
+		}
+	}
+
+	return undefined;
+}
+
 // HTML ファイルへのリンクをまとめた index.html を生成
 function generateIndexHtml(dir, outputFile = 'index.html') {
   const htmlFiles = getHtmlFiles(dir);
   const sortedHtmlFiles = sortHtmlFilesByDepthAndName(htmlFiles);
 
-  const links = sortedHtmlFiles.map( ( file ) =>
+  const links = sortedHtmlFiles.map( ( rec ) =>
   	{
-		let page_title = getTitleFromHTML( file );
+		const file = rec.path;
+		let page_title = rec.title;
 		const relativePath = path.relative(dir, file);
 		if( ! page_title )
 		{
@@ -103,7 +148,7 @@ function generateIndexHtml(dir, outputFile = 'index.html') {
 }
 
 
-const targetDir = process.argv[2] || '';
+const targetDir = process.argv[2] || 'docs';
 
 try
 {
