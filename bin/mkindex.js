@@ -44,16 +44,42 @@ function sortHtmlFilesByDepthAndName(fileList)
 	});
 }
 
+function getTitleFromHTML( file_path )
+{
+	const content = fs.readFileSync( file_path ,'utf-8');
+
+	if( typeof content === 'string' )
+	{
+		const matched = content.match( /<title>([^<]+)<\//im );
+
+		if( matched )
+		{
+			return matched[1];
+		}
+	}
+	
+	return undefined;
+}
+
 // HTML ファイルへのリンクをまとめた index.html を生成
 function generateIndexHtml(dir, outputFile = 'index.html') {
   const htmlFiles = getHtmlFiles(dir);
   const sortedHtmlFiles = sortHtmlFilesByDepthAndName(htmlFiles);
 
   const links = sortedHtmlFiles.map( ( file ) =>
-  {
-    const relativePath = path.relative(dir, file);
-    return `<li><a href="${relativePath}">${relativePath}</a></li>`;
-  }).join('\n');
+  	{
+		let page_title = getTitleFromHTML( file );
+		const relativePath = path.relative(dir, file);
+		if( ! page_title )
+		{
+			page_title = relativePath;
+		}
+		else
+		{
+			page_title = `${relativePath} - ${page_title}`
+		}
+		return `<li><a href="${relativePath}">${page_title}</a></li>`;
+  	}).join('\n');
 
   const content = `
 <!DOCTYPE html>
