@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../output.css" rel="stylesheet">
+  <title>max-w-screen-** クラス</title>
+</head>
+<body>
+<header class="m-4"><h1><a href="https://tailwindcss.com/docs/max-width">“Max-Width - Tailwind CSS”</a></h1></header>
+<section class="m-4">
+<h2>max-w-screen-** クラスとは何か</h2>
+<div>
+	<p>単純にそのブロックの横幅の最大サイズを <code>sm</code> <code>md</code> <code>lg</code> <code>xl</code> <code>2xl</code> に制限するクラス。それらのサイズ以下では親ブロックのサイズに追随する。</p>
+	<p><strong>なぜこれを調べたか？</strong></p>
+	<p><code>with</code> を指定するためのスタイルの最大値が <code>w-96</code> でわずか <code>384px</code> までしかないのはなぜかを ChatGPT 先生に聞いたのが発端。</p>
+	<p>基本的にはレスポンシブデザインを前提としているため、親ブロックに対する割合やレスポンシブ対応するのに十分な（小さな）サイズの指定でレイアウトをデザインするコンセプトとなっているため。</p>
+	<p>その親ブロックとなるコンポーネントのサイズをコントロールする方法として <code>max-w-screen-**</code> を教えられたため。</p>
+</div>
+</section>
+
+<section>
+<h2 class="mt-4">以下サンプル</h2>
+
+<div class="max-w-full visible-div2">
+	<div class="max-w-screen-sm visible-div">
+		<h3>class=<code>max-w-screen-sm</code></h3>
+		<div>Two roads diverged in a yellow wood,
+		And sorry I could not travel both
+		And be one traveler, long I stood
+		And looked down one as far as I could
+		To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p>
+			<ul>
+				<li>ブロック自体は左寄せ</li>
+				<li>親ブロックのサイズが <code>sm</code>(<code>640px</code>) 以上の時、<code>width = 640px</code></li> 固定になる。
+			</ul>
+			</p>
+		</div>
+	</div>
+
+	<div class="max-w-screen-md visible-div">
+		<h3>class=<code>max-w-screen-md</code></h3>
+		<div>Two roads diverged in a yellow wood,
+		And sorry I could not travel both
+		And be one traveler, long I stood
+		And looked down one as far as I could
+		To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p>
+			<ul>
+				<li>ブロック自体は左寄せ</li>
+				<li>親ブロックのサイズが <code>md</code>(<code>768px</code>) 以上の時、<code>width = 768px</code></li> 固定になる。
+			</ul>
+			</p>
+		</div>
+	</div>
+
+	<div class="max-w-screen-lg visible-div">
+		<h3>class=<code>max-w-screen-lg</code></h3>
+		<div>Two roads diverged in a yellow wood,
+		And sorry I could not travel both
+		And be one traveler, long I stood
+		And looked down one as far as I could
+		To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p>
+			<ul>
+				<li>ブロック自体は左寄せ</li>
+				<li>親ブロックのサイズが <code>lg</code>(<code>1024px</code>) 以上の時、<code>width = 1024px</code></li> 固定になる。
+			</ul>
+			</p>
+		</div>
+	</div>
+
+	<div class="max-w-screen-xl visible-div">
+		<h3>class=<code>max-w-screen-xl</code></h3>
+		<div>Two roads diverged in a yellow wood,
+		And sorry I could not travel both
+		And be one traveler, long I stood
+		And looked down one as far as I could
+		To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p>
+			<ul>
+				<li>ブロック自体は左寄せ</li>
+				<li>親ブロックのサイズが <code>xl</code>(<code>1280px</code>) 以上の時、<code>width = 1280px</code></li> 固定になる。
+			</ul>
+			</p>
+		</div>
+	</div>
+
+	<div class="max-w-screen-2xl visible-div">
+		<h3>class=<code>max-w-screen-2xl</code></h3>
+		<div>Two roads diverged in a yellow wood,
+		And sorry I could not travel both
+		And be one traveler, long I stood
+		And looked down one as far as I could
+		To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p>
+			<ul>
+				<li>ブロック自体は左寄せ</li>
+				<li>親ブロックのサイズが <code>2xl</code>(<code>1536px</code>) 以上の時、<code>width = 1536px</code></li> 固定になる。
+				<li>指定サイズ未満では親ブロックのサイズに追随する。</li>
+			</ul>
+			</p>
+		</div>
+	</div>
+</div>
+
+</section>
+</body>
+</html>
