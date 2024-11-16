@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../output.css" rel="stylesheet">
+  <title>container クラスの意味と挙動</title>
+
+<style></style>
+</head>
+<body>
+<header class="m-4"><h1><a href="https://tailwindcss.com/docs/container">“Container - Tailwind CSS”</a></h1></header>
+<section class="m-4">
+<h2>container クラスとは何か</h2>
+<div>
+	<p><code>container</code>クラスは<strong>要素の幅を現在のブレイクポイントに固定する</strong>ためのコンポーネントクラス。</p>
+	<p>ブレイクポイントとはレスポンシブデザインのために TailwindCSS で定義された横幅サイズの区切りのこと。その区切りサイズは以下の様に定義されている。</p>
+	<table class="m-4 border">
+	<tr>
+		<td><code>sm</code></td>
+		<td> <code>640px</code></td>
+	</tr>
+	<tr>
+		<td><code>md</code></td>
+		<td> <code>768px</code></td>
+	</tr>
+	<tr>
+		<td><code>lg</code></td>
+		<td> <code>1024px</code></td>
+	</tr>
+	<tr>
+		<td><code>xl</code></td><td> <code>1280px</code></td>
+	</tr>
+	<tr>
+		<td><code>2xl</code></td><td> <code>1536px</code></td>
+	</tr>
+	</table>
+		<p>「要素の幅を現在のブレイクポイントに固定する」とは、つまり親ブロック（この HTML のサンプルでは
+		<code>body</code> タグ）の横幅によってこれらいずれかの横幅に固定すると言うこと。
+		具体的には <code>container</code> の横幅は以下の特徴を持つ。</p>
+	<p>
+	<ol class="my-3 ml-3">
+		<li>親ブロックの横幅が <code>sm</code>(<code>640px</code>) 未満の時、最大幅を親ブロックと同じサイズにする（ブレイクポイント未満は完全追従）</li>
+		<li>親ブロックの横幅が <code>sm</code>(<code>640px</code>) =&lt; <code>md</code>(<code>768px</code>) の間、最大幅を <code>640px</code> に固定する</li>
+		<li>親ブロックの横幅が <code>md</code>(<code>768px</code>) =&lt; <code>lg</code>(<code>1024px</code>)の間、最大幅を <code>768px</code> に固定する</li>
+		<li>親ブロックの横幅が <code>lg</code>(<code>1024px</code>) =&lt; <code>xg</code>(<code>1280px</code> )の間、最大幅を <code>1024px</code> に固定する</li>
+		<li>親ブロックの横幅が <code>xl</code>(<code>1280px</code>) =&lt; <code>2xl</code>(<code>1536px</code> )の間、最大幅を <code>1280px</code> に固定する</li>
+		<li>親ブロックの横幅が <code>2xl</code>(<code>1536px</code>) 以上の時、最大幅を <code>1536px</code> に固定する</li>
+	</ol>
+	なので、ブラウザウィンドウの横幅を変えると段階的にサイズが変わって見える。
+	</p>
+</div>
+</section>
+<section>
+<h2 class="mt-4">以下サンプル</h2>
+  <div class="
+  	container
+	visible-div
+	">
+		<h3>class=<code>container</code></h3>
+		<div>Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p>まずブロックは親ブロック <code>body</code> に対して左寄せがデフォルト。</p>
+			<p>ドキュメントには <code>container</code> は <code>width: 100%;</code> と同じと書かれているが <code>container</code> は「現在のブレイクポイントに固定する」ものなので段階的に伸縮する。</p>
+		</div>
+	</div>
+
+	<div class="
+  	container mx-auto
+	visible-div
+	">
+		<h3>class=<code>container mx-auto</code></h3>
+		<div>Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p><code>mx-auto</code> は <code>container</code> と一緒に使うとセンタリングする挙動になる。
+			これは <code>mx-auto</code> が
+			<pre>
+margin-left: auto;
+margin-right: auto;</pre>
+			であるため。ただブロックの横幅は <code>container</code> の特性 = ブレイクポイント毎の固定幅なのでその点注意。
+			</p>
+		</div>
+	</div>
+
+	<div class="
+  	container mx-auto w-96
+	visible-div
+	">
+		<h3>class=<code>container mx-auto w-96</code></h3>
+		<div>Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p><code>container</code> 指定にかかわらずさらに <code>w-96</code> という横幅指定をしている矛盾した設定。</p>
+			<p>Chrome では <code>container</code> が優先され、Safari では <code>w-96</code> が優先された。実用上はあまり意味の無い設定サンプル</p>
+		</div>
+	</div>
+
+	<div class="
+  	container mx-48
+	visible-div
+	">
+		<h3>class=<code>container mx-48</code></h3>
+		<div>Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p><code>mx-48</code> は左右マージン<code>12rem</code> と同じだが、<code>container</code> は <code>mx-auto</code> ではない限り左寄せになる様だ。したがって実質的に左のマージン <code>12rem</code> だけが有効になる。</p>
+			<p>そして肝心の <code>container</code> の横幅の計算だが、これはマージン指定が無いとき同じ計算によって算出されるらしい。
+			したがってウィンドウ幅を変えたときの <code>width</code> は単に <code>container</code> だけを指定したブロックと同じになる。</p>
+		</div>
+	</div>
+
+	<div class="
+  	container mx-auto px-4
+	visible-div
+	">
+		<h3>class=<code>container mx-auto px-4</code></h3>
+		<div>Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p>追加した <code>px-4</code> はあくまでコンテナブロック内のパディングであり、フレーミングには影響ない。</p>
+		</div>
+	</div>
+
+	<div class="
+  	md:container md:mx-auto
+	visible-div
+	">
+		<h3>class=<code>md:container md:mx-auto</code></h3>
+		<div>Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;</div>
+		<hr class="my-2">
+		<div class="p-3">
+			<h4>挙動の解釈</h4>
+			<p><a href="https://tailwindcss.com/docs/container">公式ドキュメント</a>にサンプルとして載っていたもの。</p>
+			<p>親ブロックの横幅が <code>md</code>(<code>768px</code>) を越えるまではウィンドウ幅に追従するが、<code>md</code>(<code>768px</code>) 以上になるとブレイクポイント毎の固定幅となる。</p>
+			<p>ちなみにより分かり易いように <code>lg</code> に変えたところ、<code>lg</code>(<code>1024px</code>) を越えてもブレイクポイント毎のサイズ固定にならなかった。バグの可能性有り。</p>
+		</div>
+	</div>
+</section>
+</body>
+</html>
