@@ -1,0 +1,1034 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flexbox/フレックスボックス</title>
+<style type="text/css">
+
+code {
+	background-color: #818b981f;
+	border-radius: 6px;
+	color: #1f2328;
+	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",monospace;
+}
+
+/* pre {
+	color: #1f2328;
+	border-radius: 6px;
+	background-color: #EDEDED;
+	padding: 6pt;
+	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",monospace;
+} */
+
+pre {
+	font-size: small;
+}
+
+h1 {
+	background-color: rgb(201, 230, 237)	;
+	padding-left: 0.5rem;
+}
+
+h1:not(:first-of-type)
+{
+	margin-top: 3rem;
+}
+h2 {
+	border-left: 6pt solid #6699FF;
+	border-bottom: 1pt solid #6699FF;
+	padding-left: 6pt;
+	margin-top: 2.5rem
+}
+
+h3 {
+	border-bottom: 1pt solid #5b5b5b;
+	margin-top: 1rem
+}
+
+section div {
+	border: 2pt solid #1E90FF;
+	background-color: #87CEFA;
+	padding: 0.5rem;
+	/* border-collapse: collapse; */
+}
+
+section div div{
+	border: 2pt solid #DA70D6;
+	background-color: #FFC0CB;
+	padding: 0.5rem;
+	text-align: center;
+	/* border-collapse: collapse; */
+}
+
+section div div div{
+	border: 1px solid #007700;
+	background-color: #B1F9D0;
+	padding: 0.5rem;
+	/* border-collapse: collapse; */
+}
+
+section div div div div{
+	border: 1px solid #774500;
+	background-color: #f9f4b1;
+	padding: 0.5rem;
+	/* border-collapse: collapse; */
+}
+
+</style>
+</head>
+<body style="padding: 1.5rem;">
+
+<div id="toc"></div>
+
+<section>
+<h1>flexbox とはなんぞや？</h1>
+<h2>基本的には <code>display</code> プロパティによる指定の一種</h2>
+
+<p>CSS プロパティ <code>display</code> は表示方式をコントロールする。例えば要素をブロックとして表示するという意味で <code>display: block</code> と指定したり、要素をテーブルとして表示することを指定する <code>display: table</code> といった指定が出来る。</p>
+
+<p>flexbox とはこの <code>display</code> に<code>flex</code>を指定した要素を指す。</p>
+
+<p>そして <code>display: flex</code> としたブロックでは専用に用意された <code>flex-xxxxx</code>といったスタイル指定により柔軟なレイアウトの指定が出来るようになる。</p>
+
+<p>MDN の「柔軟なレイアウト」解説</p>
+
+<ul><li><a href="https://developer.mozilla.org/ja/docs/Web/CSS/CSS_flexible_box_layout">“CSS フレックスボックスレイアウト - CSS: カスケーディングスタイルシート | MDN”</a></li></ul>
+
+<h2>基本構造</h2>
+
+<p>flexbox はそのコンテナと子要素からなり、それぞれを flex コンテナ、flex アイテムと呼称することが多いが、flex アイテムがまた flex コンテナとなる事もある。</p>
+
+<pre><code class="language-html">&lt;div style="display: flex;"&gt;&lt;!-- flex コンテナ --&gt;
+	&lt;div&gt;flexアイテム1&lt;/div&gt;
+	&lt;div&gt;flexアイテム2&lt;/div&gt;
+	&lt;div&gt;flexアイテム3&lt;/div&gt;
+&lt;/div&gt;
+</code>
+</pre>
+
+<p>ここでは基本的に flex コンテナと、その中に入った複数の flex アイテム、という単純な構成で <code>flex-xxxx</code> スタイル指定について解説する。</p>
+
+</section>
+
+<section>
+<h1>Flexbox コンテナ側に設定するスタイル</h1>
+<h2>基本</h2>
+	<h3>デフォルト</h3>
+	<p>コンテナとなるブロックに <code>display: flex;</code> を指定しただけ。右に溢れる事が分かる様にたくさんの子要素を入れている。</p>
+	<pre>
+<code class="language-html">&lt;div style="display: flex;"&gt;
+	&lt;div&gt;Item01&lt;/div&gt;
+	&lt;div&gt;Item02&lt;/div&gt;
+	&lt;div&gt;Item03&lt;/div&gt;
+	...
+&lt;/div&gt;</code></pre>
+
+	<div style="display: flex;">
+		<div>Item01</div>
+		<div>Item02</div>
+		<div>Item03</div>
+		<div>Item04</div>
+		<div>Item05</div>
+		<div>Item06</div>
+		<div>Item07</div>
+		<div>Item08</div>
+		<div>Item09</div>
+		<div>Item10</div>
+		<div>Item11</div>
+		<div>Item12</div>
+		<div>Item13</div>
+		<div>Item14</div>
+		<div>Item15</div>
+		<div>Item16</div>
+	</div>
+
+	<h3>デフォルト + ネストした div</h3>
+	<p>flex コンテナ直下の div の中にさらに div を並べたケース。どうやら flex の特徴が出るのはコンテナ直下のブロックのみの模様。</p>
+	<div style="display: flex;">
+		<div>Item1</div>
+		<div>
+			<div>Item2-1</div>
+			<div>Item2-2</div>
+			<div>Item2-3</div>
+		</div>
+		<div>Item3</div>
+	</div>
+</section>
+
+<section>
+	<h2>子要素を並べる方向を指定する - flex-direction</h2>
+	<p>例:</p>
+	<pre>
+<code class="language-html">&lt;div style="
+	display: flex;
+	flex-direction: row;
+"&gt;
+	&lt;div&gt;Item1&lt;/div&gt;
+	&lt;div&gt;Item2&lt;/div&gt;
+	...
+&lt;/div&gt;</code></pre>
+	<h3>row（デフォルト）</h3>
+	<div style="display: flex;
+				flex-direction: row;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>row-reverse</h3>
+	<div style="display: flex;
+				flex-direction:row-reverse;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>column</h3>
+	<div style="display: flex;
+				flex-direction: column
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>column-reverse</h3>
+	<div style="display: flex;
+				flex-direction: column-reverse
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+</section>
+
+<section>
+	<h2>横揃えを指定する - justify-content</h2>
+	<p>例:</p>
+	<pre>
+<code class="language-html">&lt;div style="
+	display: flex;
+	justify-content: flex-tart;
+"&gt;
+	&lt;div&gt;Item1&lt;/div&gt;
+	&lt;div&gt;Item2&lt;/div&gt;
+	...
+&lt;/div&gt;</code></pre>
+	<h3>flex-start（デフォルト）</h3>
+	<div style="display: flex;
+				justify-content: flex-tart;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>flex-end</h3>
+	<div style="display: flex;
+				justify-content: flex-end;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>center</h3>
+	<div style="display: flex;
+				justify-content: center;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>space-between</h3>
+	<div style="display: flex;
+				justify-content: space-between;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>space-around</h3>
+	<div style="display: flex;
+				justify-content: space-around;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+</section>
+
+
+<section>
+	<h2>縦方向の制御指定 - align-items</h2>
+	<p>例:</p>
+	<pre>
+<code class="language-html">&lt;div style="
+	display: flex;
+	align-items: stretch;
+	height: 6rem;
+"&gt;
+	&lt;div&gt;Item1&lt;/div&gt;
+	&lt;div&gt;Item2&lt;/div&gt;
+	...
+&lt;/div&gt;</code>
+</pre>
+	<h3>stretch（デフォルト）</h3>
+	<div style="display: flex;
+				align-items: stretch;
+				height: 6rem;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>flex-start</h3>
+	<div style="display: flex;
+				align-items: flex-start;
+				height: 6rem;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>flex-end</h3>
+	<div style="display: flex;
+				align-items: flex-end;
+				height: 6rem;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>center</h3>
+	<div style="display: flex;
+				align-items: center;
+				height: 6rem;
+				">
+		<div>Item1</div>
+		<div>Item2</div>
+		<div>Item3</div>
+		<div>Item4</div>
+	</div>
+
+	<h3>baseline</h3>
+	<p>分かりにくいがテキストのベースラインを合わせる。この例では一番縦長の item3 のボックスが上寄せになりその中のテキストに他のテキストがそろえられる感じ。</p>
+	<div style="display: flex;
+				align-items: baseline;
+				height: 6rem;
+				">
+		<div style="height: 2rem;">Item1</div>
+		<div style="font-size: 1.5rem;">Item2</div>
+		<div style="height: 4rem;line-height: 4rem;">Item3</div>
+		<div style="font-size: 0.5rem;"">Item4</div>
+	</div>
+</section>
+
+<section>
+	<h2>折り返しの指定 - flex-wrap</h2>
+	<p>例:</p>
+	<pre>
+<code class="language-html">&lt;div style="
+	display: flex;
+	flex-wrap: nowrap;
+"&gt;
+	&lt;div&gt;Item01&lt;/div&gt;
+	&lt;div&gt;Item02&lt;/div&gt;
+	...
+&lt;/div&gt;</code>
+	</pre>
+	<h3>nowrap（デフォルト）</h3>
+	<p>折り返し無し</p>
+	<div style="display: flex;
+				flex-wrap: nowrap;
+				">
+		<div>Item01</div>
+		<div>Item02</div>
+		<div>Item03</div>
+		<div>Item04</div>
+		<div>Item05</div>
+		<div>Item06</div>
+		<div>Item07</div>
+		<div>Item08</div>
+		<div>Item09</div>
+		<div>Item10</div>
+		<div>Item11</div>
+		<div>Item12</div>
+		<div>Item13</div>
+		<div>Item14</div>
+		<div>Item15</div>
+		<div>Item16</div>
+	</div>
+
+	<h3>wrap</h3>
+	<p>親要素（Flexbox）に合わせて折り返す。</p>
+	<div style="display: flex;
+				flex-wrap:wrap;
+				">
+		<div>Item01</div>
+		<div>Item02</div>
+		<div>Item03</div>
+		<div>Item04</div>
+		<div>Item05</div>
+		<div>Item06</div>
+		<div>Item07</div>
+		<div>Item08</div>
+		<div>Item09</div>
+		<div>Item10</div>
+		<div>Item11</div>
+		<div>Item12</div>
+		<div>Item13</div>
+		<div>Item14</div>
+		<div>Item15</div>
+		<div>Item16</div>
+	</div>
+
+	<h3>wrap-reverse</h3>
+	<p>親要素（Flexbox）に合わせて上に折り返す（イマイチ用途が思い浮かばない）</p>
+	<div style="display: flex;
+				flex-wrap:wrap-reverse;
+				">
+		<div>Item01</div>
+		<div>Item02</div>
+		<div>Item03</div>
+		<div>Item04</div>
+		<div>Item05</div>
+		<div>Item06</div>
+		<div>Item07</div>
+		<div>Item08</div>
+		<div>Item09</div>
+		<div>Item10</div>
+		<div>Item11</div>
+		<div>Item12</div>
+		<div>Item13</div>
+		<div>Item14</div>
+		<div>Item15</div>
+		<div>Item16</div>
+	</div>
+</section>
+
+<section>
+	<h2>複数行の時の縦方向の揃え - align-content</h2>
+	<p><code>flex-wrap: wrap;</code> に設定されていることが前提。</p>
+	<p>基本的には親要素である Flexbox の上下には溢れる（ウィンドウの横幅を狭めてみると確認出来る）。</p>
+	<p>例:</p>
+	<pre>
+<code class="language-html">&lt;div style="
+	display: flex;
+	flex-wrap: wrap;
+	height: 10rem;
+	width: 50%;
+	align-content: stretch;
+"&gt;
+	&lt;div&gt;Item01&lt;/div&gt;
+	&lt;div&gt;Item02&lt;/div&gt;
+	...
+&lt;/div&gt;</code>
+	</pre>
+	<h3>stretch（デフォルト）</h3>
+	<p>子要素ボックスを建てに引き延ばして埋める</p>
+	<div style="display: flex;
+				flex-wrap: wrap;
+				height: 10rem;
+				width: 50%;
+				align-content: stretch;
+				">
+		<div>Item01</div>
+		<div>Item02</div>
+		<div>Item03</div>
+		<div>Item04</div>
+		<div>Item05</div>
+		<div>Item06</div>
+		<div>Item07</div>
+		<div>Item08</div>
+		<div>Item09</div>
+		<div>Item10</div>
+		<div>Item11</div>
+		<div>Item12</div>
+
+	</div>
+
+	<h3>flex-start</h3>
+	<p>子要素ボックスのサイズは変えずに上に寄せる</p>
+	<div style="display: flex;
+				flex-wrap: wrap;
+				height: 10rem;
+				width: 50%;
+				align-content:flex-start
+				">
+		<div>Item01</div>
+		<div>Item02</div>
+		<div>Item03</div>
+		<div>Item04</div>
+		<div>Item05</div>
+		<div>Item06</div>
+		<div>Item07</div>
+		<div>Item08</div>
+		<div>Item09</div>
+		<div>Item10</div>
+		<div>Item11</div>
+		<div>Item12</div>
+
+	</div>
+
+	<h3>flex-end</h3>
+	<p>子要素ボックスのサイズは変えずに上に寄せる</p>
+	<div style="display: flex;
+				flex-wrap: wrap;
+				height: 10rem;
+				width: 50%;
+				align-content:flex-end
+				">
+		<div>Item01</div>
+		<div>Item02</div>
+		<div>Item03</div>
+		<div>Item04</div>
+		<div>Item05</div>
+		<div>Item06</div>
+		<div>Item07</div>
+		<div>Item08</div>
+		<div>Item09</div>
+		<div>Item10</div>
+		<div>Item11</div>
+		<div>Item12</div>
+
+	</div>
+
+	<h3>center</h3>
+	<p>縦方向のセンターに寄せる</p>
+	<div style="display: flex;
+				flex-wrap: wrap;
+				height: 10rem;
+				width: 50%;
+				align-content:center
+				">
+		<div>Item01</div>
+		<div>Item02</div>
+		<div>Item03</div>
+		<div>Item04</div>
+		<div>Item05</div>
+		<div>Item06</div>
+		<div>Item07</div>
+		<div>Item08</div>
+		<div>Item09</div>
+		<div>Item10</div>
+		<div>Item11</div>
+		<div>Item12</div>
+
+	</div>
+
+	<h3>space-between</h3>
+	<p>等間隔1</p>
+	<div style="display: flex;
+				flex-wrap: wrap;
+				height: 10rem;
+				width: 50%;
+				align-content:space-between
+				">
+		<div>Item01</div>
+		<div>Item02</div>
+		<div>Item03</div>
+		<div>Item04</div>
+		<div>Item05</div>
+		<div>Item06</div>
+		<div>Item07</div>
+		<div>Item08</div>
+		<div>Item09</div>
+		<div>Item10</div>
+		<div>Item11</div>
+		<div>Item12</div>
+
+	</div>
+
+	<h3>space-around</h3>
+	<p>等間隔2</p>
+	<div style="display: flex;
+				flex-wrap: wrap;
+				height: 10rem;
+				width: 50%;
+				align-content:space-around
+				">
+		<div>Item01</div>
+		<div>Item02</div>
+		<div>Item03</div>
+		<div>Item04</div>
+		<div>Item05</div>
+		<div>Item06</div>
+		<div>Item07</div>
+		<div>Item08</div>
+		<div>Item09</div>
+		<div>Item10</div>
+		<div>Item11</div>
+		<div>Item12</div>
+	</div>
+
+</section>
+
+
+
+<section>
+	<h1>子要素側に設定できるスタイル</h1>
+	<h2>縦方向の制御 - align-self（<code>align-items</code>のflexアイテム版）</h2>
+	<h3>一通りの設定</h3>
+	<div style="display: flex;
+				height: 6rem;
+				">
+		<div style="align-self: auto;">auto</div>
+		<div style="align-self: flex-start;">flex-start</div>
+		<div style="align-self: flex-end;">flex-end</div>
+		<div style="align-self: stretch;">stretch</div>
+		<div style="align-self: center;">center</div>
+		<div style="align-self: baseline;">baseline</div>
+	</div>
+	<pre>
+<code class="language-html">&lt;div style="
+		display: flex;
+		height: 6rem;
+	"&gt;
+	&lt;div style="align-self: auto;"&gt;auto&lt;/div&gt;
+	&lt;div style="align-self: flex-start;"&gt;flex-start&lt;/div&gt;
+	&lt;div style="align-self: flex-end;"&gt;flex-end&lt;/div&gt;
+	&lt;div style="align-self: stretch;"&gt;stretch&lt;/div&gt;
+	&lt;div style="align-self: center;"&gt;center&lt;/div&gt;
+	&lt;div style="align-self: baseline;"&gt;baseline&lt;/div&gt;
+&lt;/div&gt;</code>
+	</pre>
+
+</section>
+
+<section>
+	<h2>順番を入れ替える - order</h2>
+	<h3>order</h3>
+	<p>子要素の方に <code>order: 番号</code>で指定することで順番を入れ替えることが出来る。表にしたときのソート機能に使えるかも？</p>
+	<div style="display: flex;
+				flex-wrap: wrap;
+				">
+		<div style="order: 6;">Item01</div>
+		<div style="order: 1;">Item02</div>
+		<div style="order: 5;">Item03</div>
+		<div style="order: 2;">Item04</div>
+		<div style="order: 4;">Item05</div>
+		<div style="order: 3;">Item06</div>
+	</div>
+	<pre>
+<code class="language-html">&lt;div style="
+		display: flex;
+		flex-wrap: wrap;
+	"&gt;
+	&lt;div style="order: 6;"&gt;Item01&lt;/div&gt;
+	&lt;div style="order: 1;"&gt;Item02&lt;/div&gt;
+	&lt;div style="order: 5;"&gt;Item03&lt;/div&gt;
+	&lt;div style="order: 2;"&gt;Item04&lt;/div&gt;
+	&lt;div style="order: 4;"&gt;Item05&lt;/div&gt;
+	&lt;div style="order: 3;"&gt;Item06&lt;/div&gt;
+&lt;/div&gt;</code>
+	</pre>
+
+	<h3>同じ値はどうなるか</h3>
+	<p>item02,04,05 の order を 2 にした。他は指定無し = デフォルトの 0 扱いのはず。</p>
+	<p>→ 同値は元の並び順が優先される模様</p>
+	<div style="display: flex;
+				flex-wrap: wrap;
+				">
+		<div >Item01</div>
+		<div style="order: 2;">Item02</div>
+		<div >Item03</div>
+		<div style="order: 2;">Item04</div>
+		<div >Item05</div>
+		<div style="order: 2;">Item06</div>
+	</div>
+</section>
+
+<section>
+	<h2>伸びる比率 - flex-grow</h2>
+	<p>主軸方向（通常は横）に余ったスペース幅を各子要素の幅を按分でストレッチする指定。デフォルト値は 0。</p>
+	<p>0 は足し算しても 0 で按分できないのでストレッチされない。。</p>
+	<div style="display: flex;
+				">
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 0;">0</div>
+
+	</div>
+
+	<p>全てに 1 （あるいは同じ値）を与えるとそれぞれが同じサイズにストレッチされる</p>
+	<div style="display: flex;
+				">
+		<div style="flex-grow: 1;">1</div>
+		<div style="flex-grow: 1;">1</div>
+		<div style="flex-grow: 1;">1</div>
+		<div style="flex-grow: 1;">1</div>
+	</div>
+	<div style="display: flex;
+				">
+		<div style="flex-grow: 3;">3</div>
+		<div style="flex-grow: 3;">3</div>
+		<div style="flex-grow: 3;">3</div>
+		<div style="flex-grow: 3;">3</div>
+	</div>
+	<pre>
+<code class="language-html">&lt;div style="display: flex;"&gt;
+	&lt;div style="flex-grow: 3;"&gt;3&lt;/div&gt;
+	&lt;div style="flex-grow: 3;"&gt;3&lt;/div&gt;
+	&lt;div style="flex-grow: 3;"&gt;3&lt;/div&gt;
+	&lt;div style="flex-grow: 3;"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code>
+	</pre>
+
+	<p>最後のアイテムだけ 1 にする</p>
+	<div style="display: flex;
+				">
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 1;">1</div>
+	</div>
+	<p>按分なので 6 にしてもストレッチされる量は変わらない</p>
+	<div style="display: flex;
+				">
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 6;">6</div>
+	</div>
+
+	
+
+	<p>1番目のブロックに 3 を指定すると、3:6 = 1:2 となり最後のブロックの半分の長さが振り分けられる。あくまで本来ならスペースになったサイズが按分されるという点に注意</p>
+	<div style="display: flex;
+				">
+		<div style="flex-grow: 3;">3</div>
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 0;">0</div>
+		<div style="flex-grow: 6;">6</div>
+	</div>
+	<div style="display: flex;
+				">
+		<div style="flex-grow: 1;">01</div>
+		<div style="flex-grow: 1;">02</div>
+		<div style="flex-grow: 1;">03</div>
+		<div style="flex-grow: 1;">04</div>
+		<div style="flex-grow: 1;">05</div>
+		<div style="flex-grow: 1;">06</div>
+		<div style="flex-grow: 1;">07</div>
+		<div style="flex-grow: 1;">08</div>
+		<div style="flex-grow: 1;">09</div>
+	</div>
+
+	<p>1:3:5:7 = 1/16 : 3/16 : 5/16 : 7/16</p>
+	<div style="display: flex;
+				">
+		<div style="flex-grow: 1;">1</div>
+		<div style="flex-grow: 3;">3</div>
+		<div style="flex-grow: 5;">5</div>
+		<div style="flex-grow: 7;">7</div>
+	</div>
+	<div style="display: flex;
+				">
+		<div style="flex-grow: 1;">01</div>
+		<div style="flex-grow: 1;">02</div>
+		<div style="flex-grow: 1;">03</div>
+		<div style="flex-grow: 1;">04</div>
+		<div style="flex-grow: 1;">05</div>
+		<div style="flex-grow: 1;">06</div>
+		<div style="flex-grow: 1;">07</div>
+		<div style="flex-grow: 1;">08</div>
+		<div style="flex-grow: 1;">09</div>
+		<div style="flex-grow: 1;">10</div>
+		<div style="flex-grow: 1;">11</div>
+		<div style="flex-grow: 1;">12</div>
+		<div style="flex-grow: 1;">13</div>
+		<div style="flex-grow: 1;">14</div>
+		<div style="flex-grow: 1;">15</div>
+		<div style="flex-grow: 1;">16</div>
+	</div>
+	<p>↑ 余った余白を按分するので、単に等分割した場合のサイズは参考にならない。</p>
+</section>
+
+<section>
+	<h2>縮める比率 - flex-shrink</h2>
+	<p>Flexbox に収まりきらない場合のフレックスアイテムの縮小係数。デフォルト値は 1。</p>
+	<p>収まりきっている場合は何の効果も発揮しない</p>
+	<div style="display: flex;
+				">
+		<div style="flex-shrink: 1;">111111</div>
+		<div style="flex-shrink: 1;">111111</div>
+		<div style="flex-shrink: 1;">111111</div>
+		<div style="flex-shrink: 1;">111111</div>
+
+	</div>
+
+
+	<p>溢れる場合でもブロックを縮められない場合はシュリンクしない</p>
+	<div style="display: flex;
+				width: 12rem;
+				">
+		<div style="flex-shrink: 1;">111111</div>
+		<div style="flex-shrink: 1;">111111</div>
+		<div style="flex-shrink: 1;">111111</div>
+		<div style="flex-shrink: 1;">111111</div>
+	</div>
+
+	<p><code>width:</code>等でのサイズ指定の場合シュリンク（というかこの場合はストレッチか？）する</p>
+	<p>以下は子要素 <code>width</code> は <code>8rem</code> だが、flexbox は <code>24rem</code> で子要素が溢れるはずだが全ての子要素に<code>flex-shrink: 1</code>をセットしているので同比率でシュリンクしている</p>
+	<div style="display: flex;
+				width: 24rem;
+				">
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+	</div>
+	<div style="display: flex;
+				">
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+	</div>
+	<p>↑各子要素の本来のサイズ</p>
+
+	<p>最後の子要素を 2 にする。1/2 ということだろうか？</p>
+	<div style="display: flex;
+				width: 24rem;
+				">
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 2;width: 8rem;">2</div>
+	</div>
+	<p>最後の子要素を 3 にする。1/3 ということだろうか？</p>
+	<div style="display: flex;
+				width: 24rem;
+				">
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 3;width: 8rem;">3</div>
+	</div>
+	<p>最後の子要素を 4 にする。1/4 ということだろうか？</p>
+	<div style="display: flex;
+				width: 24rem;
+				">
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 1;width: 8rem;">1</div>
+		<div style="flex-shrink: 4;width: 8rem;">4</div>
+	</div>
+	<pre>
+<code class="language-html">&lt;div style="
+		display: flex;
+		width: 24rem;
+	"&gt;
+	&lt;div style="flex-shrink: 1;width: 8rem;"&gt;1&lt;/div&gt;
+	&lt;div style="flex-shrink: 1;width: 8rem;"&gt;1&lt;/div&gt;
+	&lt;div style="flex-shrink: 1;width: 8rem;"&gt;1&lt;/div&gt;
+	&lt;div style="flex-shrink: 4;width: 8rem;"&gt;4&lt;/div&gt;
+&lt;/div&gt;</code>
+	</pre>
+	<p>イマイチシュリンクの計算式がよく分からない。。。</p>
+</section>
+
+
+<section>
+	<h2>幅のベースサイズ - flex-basis</h2>
+	<p>前述の<code>flex-shrink</code>の検証のためには子要素の幅に <code>width</code> を使ったが、flex アイテムには専用の横幅指定スタイルがある。それが<code>flex-basis</code>。</p>
+	<h3>auto</h3>
+	<p>デフォルト値 <code>auto</code></p>
+	<div style="display: flex;
+				">
+		<div style="flex-basis: auto;">auto</div>
+		<div style="flex-basis: auto;">auto</div>
+		<div style="flex-basis: auto;">auto</div>
+		<div style="flex-basis: auto;">auto</div>
+	</div>
+	<pre>
+<code class="language-html">&lt;div style="display: flex;"&gt;
+	&lt;div style="flex-basis: auto;"&gt;auto&lt;/div&gt;
+	&lt;div style="flex-basis: auto;"&gt;auto&lt;/div&gt;
+	&lt;div style="flex-basis: auto;"&gt;auto&lt;/div&gt;
+	&lt;div style="flex-basis: auto;"&gt;auto&lt;/div&gt;
+&lt;/div&gt;</code>
+	</pre>
+
+	<h3>サイズ指定</h3>
+	<div style="display: flex;
+				">
+		<div style="flex-basis: 8rem;">8rem</div>
+		<div style="flex-basis: 8rem;">8rem</div>
+		<div style="flex-basis: 8rem;">8rem</div>
+		<div style="flex-basis: 8rem;">8rem</div>
+	</div>
+	<div style="display: flex;
+				">
+		<div style="flex-basis: 64pt;">64pt</div>
+		<div style="flex-basis: 64pt;">64pt</div>
+		<div style="flex-basis: 64pt;">64pt</div>
+		<div style="flex-basis: 64pt;">64pt</div>
+	</div>
+
+	<div style="display: flex;
+				">
+		<div style="flex-basis: 200px;">200px</div>
+		<div style="flex-basis: 200px;">200px</div>
+		<div style="flex-basis: 200px;">200px</div>
+		<div style="flex-basis: 200px;">200px</div>
+	</div>
+
+	<h3>パーセント指定</h3>
+	<div style="display: flex;
+				">
+		<div style="flex-basis: 10%;">10%</div>
+		<div style="flex-basis: 10%;">10%</div>
+		<div style="flex-basis: 10%;">10%</div>
+		<div style="flex-basis: 10%;">10%</div>
+	</div>
+	<div style="display: flex;
+				">
+		<div style="flex-basis: 20%;">20%</div>
+		<div style="flex-basis: 20%;">20%</div>
+		<div style="flex-basis: 20%;">20%</div>
+		<div style="flex-basis: 20%;">20%</div>
+	</div>
+	<div style="display: flex;
+				">
+		<div style="flex-basis: 50%;">50%</div>
+		<div style="flex-basis: 50%;">50%</div>
+		<div style="flex-basis: 50%;">50%</div>
+		<div style="flex-basis: 50%;">50%</div>
+	</div>
+
+</section>
+
+<section>
+	<h2>flex - flex-grow,flex-shrink,flex-basis を一度に設定する</h2>
+	<p>普通はこの方法で<code>flex-grow</code>,<code>flex-shrink</code>,<code>flex-basis</code> を一度に設定する。</p>
+	<h3>よくあるパターン</h3>
+	<div style="display: flex;
+				">
+		<div style="flex: 1 1 auto;"><code>1 1 auto</code></div>
+		<div style="flex: 1 1 auto;"><code>1 1 auto</code></div>
+		<div style="flex: 1 1 auto;"><code>1 1 auto</code></div>
+		<div style="flex: 1 1 auto;"><code>1 1 auto</code></div>
+	</div>
+	<pre>
+<code class="language-html">&lt;div style="display: flex;"&gt;
+	&lt;div style="flex: 1 1 auto;"&gt;&lt;code&gt;1 1 auto&lt;/code&gt;&lt;/div&gt;
+	&lt;div style="flex: 1 1 auto;"&gt;&lt;code&gt;1 1 auto&lt;/code&gt;&lt;/div&gt;
+	&lt;div style="flex: 1 1 auto;"&gt;&lt;code&gt;1 1 auto&lt;/code&gt;&lt;/div&gt;
+	&lt;div style="flex: 1 1 auto;"&gt;&lt;code&gt;1 1 auto&lt;/code&gt;&lt;/div&gt;
+&lt;/div&gt;</code>
+	</pre>
+	<div style="display: flex;
+				">
+		<div style="flex: 0 1 auto;"><code>0 1 auto</code></div>
+		<div style="flex: 0 1 auto;"><code>0 1 auto</code></div>
+		<div style="flex: 0 1 auto;"><code>0 1 auto</code></div>
+		<div style="flex: 0 1 auto;"><code>0 1 auto</code></div>
+	</div>
+	<div style="display: flex;
+				">
+		<div style="flex: 0 1 20%;"><code>0 1 20%</code></div>
+		<div style="flex: 0 1 20%;"><code>0 1 20%</code></div>
+		<div style="flex: 0 1 20%;"><code>0 1 20%</code></div>
+		<div style="flex: 0 1 20%;"><code>0 1 20%</code></div>
+	</div>
+</section>
+
+
+<section>
+<h1>まとめとしてよくあるプロフィールレイアウトを実現する</h1>
+	<div style="display: flex;
+				flex-direction: column
+				">
+		<div style="display: flex; justify-content: center">
+		<!-- ヘッダー -->
+			<div>ヘッダとか？</div>
+		</div>
+		<div style="display: flex;
+				flex-direction: row
+				">
+			<!-- サムネ と基本プロパティー行-->
+			<div style="flex: 0 1 64pt">サムネ</div>
+			<div style="flex: 1 1 auto">
+				<!-- 基本プロパティー-->
+				<div style="text-align: left;">ホゲホゲ所属</div>
+				<div style="text-align: left;">ハナモゲラ担当</div>
+				<div style="text-align: left;">名前</div>
+			</div>
+		</div>
+		<div style="display: flex;"">
+		<div style="flex: 1 1 auto;text-align: left;">
+			詳細コンテンツ、あるいはフッター
+		</div>
+			
+		</div>
+	</div>
+	<pre>
+<code class="language-html">&lt;div style="
+			display: flex;
+			flex-direction: column
+			"&gt;
+	&lt;div style="display: flex; justify-content: center"&gt;
+	&lt;!-- ヘッダー --&gt;
+		&lt;div&gt;ヘッダとか？&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div style="display: flex;
+			flex-direction: row
+			"&gt;
+		&lt;!-- サムネ と基本プロパティー行--&gt;
+		&lt;div style="flex: 0 1 64pt"&gt;サムネ&lt;/div&gt;
+		&lt;div style="flex: 1 1 auto"&gt;
+			&lt;!-- 基本プロパティー--&gt;
+			&lt;div style="text-align: left;"&gt;ホゲホゲ所属&lt;/div&gt;
+			&lt;div style="text-align: left;"&gt;ハナモゲラ担当&lt;/div&gt;
+			&lt;div style="text-align: left;"&gt;名前&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div style="display: flex;""&gt;
+	&lt;div style="flex: 1 1 auto;text-align: left;"&gt;
+		詳細コンテンツ、あるいはフッター
+	&lt;/div&gt;
+		
+	&lt;/div&gt;
+&lt;/div&gt;</code>
+	</pre>
+</section>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.20.0/dist/tocbot.css">
+<script src="https://cdn.jsdelivr.net/npm/tocbot@4.20.0/dist/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '#toc',
+    contentSelector: 'body',
+    headingSelector: 'h1, h2, h3',
+  });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+</body>
+</html>
