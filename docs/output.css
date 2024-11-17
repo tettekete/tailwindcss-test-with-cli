@@ -687,6 +687,10 @@ ul {
   background-color: rgb(252 231 243 / var(--tw-bg-opacity));
 }
 
+.collapse {
+  visibility: collapse;
+}
+
 .m-4 {
   margin: 1rem;
 }
@@ -709,6 +713,10 @@ ul {
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
 }
 
 .ml-3 {
@@ -784,8 +792,20 @@ ul {
   flex: 1 1 0%;
 }
 
+.flex-shrink {
+  flex-shrink: 1;
+}
+
 .shrink-0 {
   flex-shrink: 0;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.border-collapse {
+  border-collapse: collapse;
 }
 
 .grid-cols-1 {
@@ -794,6 +814,10 @@ ul {
 
 .flex-col {
   flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .items-center {
