@@ -86,6 +86,7 @@ function getTitleFromMarkdown( file_path )
 	
 	let tilte = ""
 	const regex = /^#\s+(.+)/;
+	const normal_line_regex = /^[^#\*\s\-\+\=].+/;
 	for( let line of content.split(/\r?\n/) )
 	{
 		if( line.length > 0 )
@@ -97,7 +98,10 @@ function getTitleFromMarkdown( file_path )
 			}
 			else
 			{
-				return line;
+				if( normal_line_regex.exec( line ) )
+				{
+					return line;
+				}
 			}
 		}
 	}
@@ -117,13 +121,13 @@ function generateIndexHtml(dir, outputFile = 'index.html') {
 		const relativePath = path.relative(dir, file);
 		if( ! page_title )
 		{
-			page_title = relativePath;
+			page_title = '';
 		}
 		else
 		{
-			page_title = `${relativePath} - ${page_title}`
+			page_title = ` - ${page_title}`
 		}
-		return `<li><a href="${relativePath}">${page_title}</a></li>`;
+		return `<li><a href="${relativePath}">${relativePath}</a>${page_title}</li>`;
   	}).join('\n');
 
   const content = `
@@ -132,10 +136,11 @@ function generateIndexHtml(dir, outputFile = 'index.html') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../output.css" rel="stylesheet">
   <title>Index of HTML Files</title>
 </head>
-<body>
-  <h1>Index of HTML Files</h1>
+<body class="p-6">
+  <h1 class="mb-6">Index of HTML Files</h1>
   <ul>
     ${links}
   </ul>
