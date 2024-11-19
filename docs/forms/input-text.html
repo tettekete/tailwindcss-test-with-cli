@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../tailwind.min.css" rel="stylesheet">
+  <title>input type="text" 系インプットフィールドサンプル</title>
+</head>
+<body>
+	<div class="p-6">
+	<h1>テキストインプットの設定例</h1>
+	<div class="container">	
+
+	<form>
+		<label for="defautlInput">デフォルトインプット</label>
+		<input type="text" id="defautlInput" value="デフォルトインプット"
+		class="
+			block
+			w-full
+			border
+			border-slate-400
+			rounded-md
+			shadow-sm
+			my-1
+			px-3
+			py-2
+			text-sm
+			bg-white
+			placeholder-slate-400
+			focus:outline-none
+			focus:border-sky-500
+			focus:ring-1
+			focus:ring-sky-500
+			focus:shadow-inner
+			focus:shadow-gray-200
+			disabled:bg-slate-50
+			disabled:text-slate-600
+			disabled:border-slate-200
+			disabled:shadow-none
+			invalid:border-pink-500
+			invalid:text-pink-600
+			focus:invalid:border-pink-500
+			focus:invalid:ring-pink-500
+			">
+
+		<label for="disabledInput">disable なインプット</label>
+		<input type="text" id="disabledInput" value="disable なインプット" disabled
+		class="
+			block
+			w-full
+			border
+			border-slate-400
+			rounded-md
+			shadow-sm
+			my-1
+			px-3
+			py-2
+			text-sm
+			bg-white
+			placeholder-slate-400
+			focus:outline-none
+			focus:border-sky-500
+			focus:ring-1
+			focus:ring-sky-500
+			focus:shadow-inner
+			focus:shadow-gray-200
+			disabled:bg-slate-50
+			disabled:text-slate-600
+			disabled:border-slate-200
+			disabled:shadow-none
+			invalid:border-pink-500
+			invalid:text-pink-600
+			focus:invalid:border-pink-500
+			focus:invalid:ring-pink-500
+			">
+
+		<label for="disabledInput">required なインプット（入力が無いと invalid 状態になる）</label>
+		<input type="text" id="requiredInput" required
+		class="
+			block
+			w-full
+			border
+			border-slate-400
+			rounded-md
+			shadow-sm
+			my-1
+			px-3
+			py-2
+			text-sm
+			bg-white
+			placeholder-slate-400
+			focus:outline-none
+			focus:border-sky-500
+			focus:ring-1
+			focus:ring-sky-500
+			focus:shadow-inner
+			focus:shadow-gray-200
+			disabled:bg-slate-50
+			disabled:text-slate-600
+			disabled:border-slate-200
+			disabled:shadow-none
+			invalid:border-pink-500
+			invalid:text-pink-600
+			focus:invalid:border-pink-500
+			focus:invalid:ring-pink-500
+			">
+
+		<label for="emailInput"><code>type="email"</code> なインプット（入力内容が email っぽくないと invalid 状態になる）</label>
+		<input type="email" id="emailInput"
+		class="
+			block
+			w-full
+			border
+			border-slate-400
+			rounded-md
+			shadow-sm
+			my-1
+			px-3
+			py-2
+			text-sm
+			bg-white
+			placeholder-slate-400
+			focus:outline-none
+			focus:border-sky-500
+			focus:ring-1
+			focus:ring-sky-500
+			focus:shadow-inner
+			focus:shadow-gray-200
+			disabled:bg-slate-50
+			disabled:text-slate-600
+			disabled:border-slate-200
+			disabled:shadow-none
+			invalid:border-pink-500
+			invalid:text-pink-600
+			focus:invalid:border-pink-500
+			focus:invalid:ring-pink-500
+			">
+		
+		<label for="textArea">textarea にも同じクラスを適用してみる</label>
+		<textarea id="textArea" rows="6" class="
+			block
+			w-full
+			border
+			border-slate-400
+			rounded-md
+			shadow-sm
+			my-1
+			px-3
+			py-2
+			text-sm
+			bg-white
+			placeholder-slate-400
+			focus:outline-none
+			focus:border-sky-500
+			focus:ring-1
+			focus:ring-sky-500
+			focus:shadow-inner
+			focus:shadow-gray-200
+			disabled:bg-slate-50
+			disabled:text-slate-600
+			disabled:border-slate-200
+			disabled:shadow-none
+			invalid:border-pink-500
+			invalid:text-pink-600
+			focus:invalid:border-pink-500
+			focus:invalid:ring-pink-500
+			"></textarea>
+	</form>
+	<h2 class="pt-6">これらのテキストインプットに共通で適用しているクラスの解説</h2>
+	<pre>
+/* 要素の性質 */
+block	/* ブロック要素として扱う */
+w-full	/* width: 100% 相当 */
+
+/* テキストフィールドの外観 */
+border 				/* テキストフィールドの「枠」を描画する */
+rounded-md			/*  「枠」をサイズ md の角丸にする */
+border-slate-400	/*  枠の色を slate-400 にする */
+shadow-sm			/* うっすらシャドウを落とす。 */
+
+/* パディング・マージンなど:
+	パディングは入力テキストとテキストフィールドの枠の間に、
+	マージンはその外に働く。
+*/
+my-1 /* 入力フィールドの上下に 0.25rem のマージンをセットする */
+px-3 /* 入力テキストと「枠」の x 方向パディングに 0.75rem をセットする */
+py-2 /* 入力テキストと「枠」の y 方向パディングに 0.5rem をセットする */
+
+/* テキストサイズ・BG カラー */
+text-sm					/* やや小さめのフォントサイズ */
+bg-white				/* 背景色を白にする */
+placeholder-slate-400	/* プレイスホルダーテキストの色を slate-400 にする */
+
+/* focus 時のスタイル指定 */
+focus:outline-none		/* フォーカス時のブラウザデフォルトのアウトラインを無しにする（代わりに ring-1 を付ける） */
+focus:border-sky-500	/* ボーダー色を sky-500 にする */
+focus:ring-1			/* ボックスシャドウを利用して「外枠」を描画するユーティリティクラス */
+focus:ring-sky-500		/* リング色を sky-500 にする */
+focus:shadow-inner		/* 入力フィールドの内側にシャドウを落とす */
+focus:shadow-gray-200	/* 内側のシャドウ色を gray-200 にする */
+
+/* disabled 状態時のスタイル */
+disabled:bg-slate-50		/* 背景色を slate-50 にする */
+disabled:text-slate-600		/* テキスト色を slate-600 にする */
+disabled:border-slate-200	/* ボーダー色を slate-200 にする */
+disabled:shadow-none		/* ボックスシャドウを無しにする */
+
+/* invalid 状態時のスタイル */
+invalid:border-pink-500			/* ボーダー色を pink-500 にする */
+invalid:text-pink-600			/* テキスト色を pink-600 にする */
+focus:invalid:border-pink-500	/* フォーカスされているけど invalid の時はボーダー色を pink-500 にする */
+focus:invalid:ring-pink-500:	/* フォーカスされているけど invalid の時はリング色を pink-500 にする */</pre>
+	</div>
+	</div>
+</body>
+</html>
