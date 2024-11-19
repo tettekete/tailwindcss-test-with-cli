@@ -22,11 +22,11 @@
     @apply text-blue-700;
   }
   code {
-	@apply font-mono rounded bg-slate-200 text-slate-800;
+	@apply text-xs p-1 font-mono rounded bg-slate-200 text-slate-800;
   }
 
   pre {
-	@apply font-mono rounded bg-slate-200 text-sm text-slate-800 m-2 p-2 whitespace-pre overflow-x-auto;
+	@apply text-sm font-mono rounded bg-slate-200 text-slate-800 m-2 p-2 whitespace-pre overflow-x-auto;
   }
 
   p {
@@ -95,13 +95,14 @@
 		  	py-2
         text-sm
         rounded-lg
+        hover:bg-gray-300
         ;
     }
 }
 
 @layer components {
   .visible-div {
-    @apply my-4 border-solid border border-black bg-slate-50;
+    @apply border-solid border border-black bg-slate-50;
   }
   .visible-div2 {
 	 @apply border-solid border border-pink-400 bg-pink-100;
