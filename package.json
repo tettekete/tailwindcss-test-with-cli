@@ -1,6 +1,7 @@
 {
   "scripts": {
     "dev": "tailwindcss -i docs/input.css -o docs/output.css --watch",
+    "dev:min": "tailwindcss -i docs/tailwind.min.src.css -o docs/tailwind.min.css --watch",
     "gen-index": "node ./bin/mkindex.js ./docs"
   },
   "devDependencies": {
