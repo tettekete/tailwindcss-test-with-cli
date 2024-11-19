@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../output.css" rel="stylesheet">
+  <title>一般的なログインコンポーネント</title>
+</head>
+<body>
+<div class="
+	min-h-screen
+	min-w-full
+	flex
+	justify-center
+	items-center
+	bg-slate-100">
+
+	<!--
+		ログインダイアログ部分をページのセンターに表示するための全画面ブロック
+
+		min-h-screen: 最低縦幅を screen = ページの高さにすることで縦幅を MAX に維持する
+		min-w-full: widh: 100%; と同じでページ横幅にフィットさせる
+		flex: ダイアログ相当部分をコントロールする為に flexbox にする
+		justify-center: 横方向センター指定( flex or grid 用)
+		~~content-center: 縦方向センター指定( flex or grid 用)~~ chrome で効かない代わりに items-center
+		items-center: flexbox 内のアイテムの縦揃えをセンターにする（何か指定しないと縦長にストレッチしてしまう）
+	-->
+
+	<div class="
+		max-w-xs
+		mx-auto
+		max-h-fit
+		bg-white
+		p-4
+		rounded-md
+		drop-shadow-xl
+		">
+		<!--
+			ログインダイアログパートの div
+
+			max-w-xs: 横幅の最大幅を xs = 20rem = 320px に指定する。
+			mx-auto: このブロックをセンタリングする。親ブロックで justify-center 指定してるからいらないかも？→ Chrome で左寄せになってしまう。
+			max-h-fit: 最大縦幅をコンテンツフィットにする。
+			~~my-auto: mx-auto の縦版~~ 親ブロックの items-center があれば不要
+			bg-white: 背景色を白に
+			p-4: コンテンツとのパディングを 1rem に
+			rounded-md: この div ブロックを角丸にする
+			drop-shadow-xl: ドロップシャドウを縁取り代わりにする
+		-->
+		<h3 class="place-self-center">サインイン</h3>
+		<hr class="py-3">
+		<form>
+			<label for="username">メールアドレス:</label>
+			<input type="email" id="username" name="username" autocomplete="username"
+			placeholder="メールアドレス"
+			required
+			class="
+				w-full
+			">
+
+			<label for="password" class="text-slate-600">パスワード:</label>
+			<input type="password" id="password" name="password" autocomplete="current-password" required
+			placeholder="パスワード"
+			class="
+				w-full
+			">
+
+			<div class="my-6 text-gray-600 text-sm">インプットテキストフィールドのスタイルは長いので <a href="../input.css">/input.css</a> で定義しています。</div>
+			<div>
+				<button class="
+					w-full
+					bg-sky-500
+					hover:bg-sky-700
+					px-5
+					py-2
+					text-sm
+					leading-5
+					rounded-lg
+					font-semibold
+					text-white
+				">サインイン</button>
+			</div>
+		</form>
+	</div>
+
+</div>
+</body>
+</html>
