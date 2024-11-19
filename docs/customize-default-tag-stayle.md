@@ -1,9 +1,14 @@
 
 - [HTML タグのカスタマイズと TailwindCSS を使ったカスタムスタイルの定義](#html-タグのカスタマイズと-tailwindcss-を使ったカスタムスタイルの定義)
-	- [HTML タグのカスタマイズは必須](#html-タグのカスタマイズは必須)
-	- [どこでカスタマイズするのか](#どこでカスタマイズするのか)
-		- [HTML タグのカスタマイズサンプル](#html-タグのカスタマイズサンプル)
-	- [独自スタイルを TailwindCSS で定義する](#独自スタイルを-tailwindcss-で定義する)
+  - [HTML タグのカスタマイズは必須](#html-タグのカスタマイズは必須)
+  - [どこでカスタマイズするのか](#どこでカスタマイズするのか)
+    - [HTML タグのカスタマイズサンプル](#html-タグのカスタマイズサンプル)
+      - [h1〜h4 のスタイルをデフォルトに近いスタイルにするサンプル](#h1h4-のスタイルをデフォルトに近いスタイルにするサンプル)
+      - [`ul`,`ol` 内の `li` それぞれ中点とナンバリングを付与するサンプル](#ulol-内の-li-それぞれ中点とナンバリングを付与するサンプル)
+      - [`input type="text"` のデフォルトスタイルとを定義する](#input-typetext-のデフォルトスタイルとを定義する)
+      - [`input type="text"` 系統の `email` や `password` なども同じデフォルトにしたい](#input-typetext-系統の-email-や-password-なども同じデフォルトにしたい)
+      - [その他詳細は公式ドキュメントを参照:](#その他詳細は公式ドキュメントを参照)
+  - [独自スタイルを TailwindCSS で定義する](#独自スタイルを-tailwindcss-で定義する)
 
 
 # HTML タグのカスタマイズと TailwindCSS を使ったカスタムスタイルの定義
@@ -45,7 +50,7 @@ HTML タグ、スタイル、いずれのカスタマイズも同じファイル
 
 ### HTML タグのカスタマイズサンプル
 
-**h1〜h4 のスタイルをデフォルトに近いスタイルにするサンプル**
+#### h1〜h4 のスタイルをデフォルトに近いスタイルにするサンプル
 
 ```
 @layer base {
@@ -64,7 +69,7 @@ HTML タグ、スタイル、いずれのカスタマイズも同じファイル
 }
 ```
 
-**`ul`,`ol` 内の `li` それぞれ中点とナンバリングを付与するサンプル**
+#### `ul`,`ol` 内の `li` それぞれ中点とナンバリングを付与するサンプル
 
 ```
 @layer base {
@@ -79,7 +84,41 @@ HTML タグ、スタイル、いずれのカスタマイズも同じファイル
 }
 ```
 
-詳細は公式ドキュメントを参照:
+#### `input type="text"` のデフォルトスタイルとを定義する
+
+```
+@layer base {
+    input[type="text"] {
+        @apply border rounded px-4 py-2 text-sm;
+        border-color: #ccc; /* カスタムの値も追加可能 */
+        background-color: #f9f9f9; /* 背景色のカスタマイズ */
+    }
+}
+```
+
+#### `input type="text"` 系統の `email` や `password` なども同じデフォルトにしたい
+
+昨今の `input type="text"` 系の入力フィールドには、デフォルトのバリデーション機能などの関係で `email` や `password`,`search` などの特別な名前が用意されている。
+
+しかし元は `input type="text"` な入力フィールドなので、ベースのスタイルを統一したい。
+このような場合では以下の様に定義できる。
+
+```
+@layer base {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="search"],
+    input[type="url"] {
+        @apply border rounded px-4 py-2 text-sm;
+        border-color: #ccc;
+        background-color: #f9f9f9;
+    }
+}
+```
+
+
+#### その他詳細は公式ドキュメントを参照:
 
 - [“List Style Type - Tailwind CSS”](https://tailwindcss.com/docs/list-style-type#setting-the-list-style-type)
 - [“List Style Position - Tailwind CSS”](https://tailwindcss.com/docs/list-style-position)
