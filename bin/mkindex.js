@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // 指定されたディレクトリから再帰的に HTML ファイルと markdown ファイルを収集
-function getHtmlFiles(dir, fileList = [])
+function getHtmlFiles(dir, fileList = [],ignore_regex = [])
 {
 	const files = fs.readdirSync(dir);
 	files.forEach((file) =>
@@ -12,29 +12,43 @@ function getHtmlFiles(dir, fileList = [])
 
 		if (stat.isDirectory())
 		{
-			getHtmlFiles(filePath, fileList);
+			getHtmlFiles(filePath, fileList , ignore_regex);
 		}
-		else if (path.extname(file) === '.html')
+		else
 		{
-			if( path.relative(dir, filePath) !== 'index.html' )
+			if( ignore_regex.length > 0 )
 			{
+				for( const regex of ignore_regex )
+				{
+					if( regex.test( filePath ) )
+					{
+						return;
+					}
+				}
+			}
+
+			if (path.extname(file) === '.html')
+			{
+				if( path.relative(dir, filePath) !== 'index.html' )
+				{
+					fileList.push({
+						path: filePath,
+						title: getTitleFromHTML( filePath )
+					});
+				}
+			}
+			else if( path.extname(file) === '.md' )
+			{
+				const title = getTitleFromMarkdown( filePath )
+				const basename = path.basename( filePath ,'.md' );
+				const path_dir = path.dirname( filePath );
+				const html_path = path.join( path_dir , basename + '.html' );
+
 				fileList.push({
-					path: filePath,
-					title: getTitleFromHTML( filePath )
+					path: html_path,
+					title: title
 				});
 			}
-		}
-		else if( path.extname(file) === '.md' )
-		{
-			const title = getTitleFromMarkdown( filePath )
-			const basename = path.basename( filePath ,'.md' );
-			const path_dir = path.dirname( filePath );
-			const html_path = path.join( path_dir , basename + '.html' );
-
-			fileList.push({
-				path: html_path,
-				title: title
-			});
 		}
 	});
 	return fileList;
@@ -111,7 +125,7 @@ function getTitleFromMarkdown( file_path )
 
 // HTML ファイルへのリンクをまとめた index.html を生成
 function generateIndexHtml(dir, outputFile = 'index.html') {
-  const htmlFiles = getHtmlFiles(dir);
+  const htmlFiles = getHtmlFiles(dir ,[] , [/_[^\/]+$/]);
   const sortedHtmlFiles = sortHtmlFilesByDepthAndName(htmlFiles);
 
   const links = sortedHtmlFiles.map( ( rec ) =>
