@@ -1,4 +1,12 @@
-# 手動作成インデックス
+
+# 手動作成インデックス <!-- omit from toc -->
+
+- [基本関係](#基本関係)
+- [ページレイアウト・フレーミング関連](#ページレイアウトフレーミング関連)
+	- [サンプル HTML 系](#サンプル-html-系)
+	- [TailwindCSS の各クラスの挙動調査系](#tailwindcss-の各クラスの挙動調査系)
+- [番外編](#番外編)
+
 
 ## 基本関係
 
@@ -9,13 +17,20 @@
 
 ### サンプル HTML 系
 
+- [“TailwindCSS Hello world!”](http://localhost/default.html)ベースHTMLコピペ用
+- [“公式にある通知表示のサンプル HTML の引用”](notify-sample.html)
 - [よくあるページレイアウトのサンプル](layout/basic-layout.html)([ソース](https://github.com/tettekete/tailwindcss-test-with-cli/blob/main/docs/layout/basic-layout.html))
 - [ヘッダとフッタが上下に張り付くよくあるレイアウトのサンプル](layout/fixed-header-footer.html)([ソース](https://github.com/tettekete/tailwindcss-test-with-cli/blob/main/docs/layout/fixed-header-footer.html))
+- [よくありそうなログインコンポーネント](component/login.html)
+- [“`input type="text"` 系インプットフィールドサンプル”](forms/input-text.html)
+
 
 ### TailwindCSS の各クラスの挙動調査系
 
 - [TailwindCSS の `container` クラスの意味と挙動](layout/container.html)([ソース](https://github.com/tettekete/tailwindcss-test-with-cli/blob/main/docs/layout/container.html))
 - [`max-w-screen-**` クラスとは何か](layout/max-w-screen-xx.html)([ソース](https://github.com/tettekete/tailwindcss-test-with-cli/blob/main/docs/layout/max-w-screen-xx.html))
+- [“`leading-**` クラスの見本”](tailwindcss-catalog/leading.html)
+- [“`font-**`(font-weight系) クラスの見本”](tailwindcss-catalog/font-weight.html)
 
 
 ## 番外編
