@@ -1428,9 +1428,8 @@ ul {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* TailwindCSS の各クラス見本用に、最低限のタグカスタマイズのみを行う CSS ファイル
-
-	出力ファイルは tailwind.min.css
+/* TailwindCSS の各クラス見本用に、最低限のタグカスタマイズのみを行うための
+tailwindcss コマンド 用 CSS ファイル
 */
 
 @media (min-width: 768px) {

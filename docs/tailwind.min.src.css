@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TailwindCSS の各クラス見本用に、最低限のタグカスタマイズのみを行う CSS ファイル
-
-	出力ファイルは tailwind.min.css
+/* TailwindCSS の各クラス見本用に、最低限のタグカスタマイズのみを行うための
+tailwindcss コマンド 用 CSS ファイル
 */
 
 @layer base {
