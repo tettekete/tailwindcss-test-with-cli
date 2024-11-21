@@ -63,10 +63,12 @@
     </div>
 
     <div class="my-4">
-      <p>Success の disabled 用の彩度だけ落としたスモークグリーンに近い色が TailwindCSS のデフォルトカラーに無いが他は近いはず。（TailwindCSS に用意されているカラーは彩度と明度が一緒にグラデーションしている感じのカラーなので彩度だけ下げた様なカラーがない）</p>
+      <h2>概要</h2>
+      <p>Bootstrap のボタンデザイン再現の過程で TailwindCSS でどの様な設定が必要なのか、どんな特徴があるのか、をつかむのが目的。</p>
+      <p>Success と Warning の disabled 用の彩度だけ落としたカラーが TailwindCSS のデフォルトカラーに無いのでイマイチ似てないが他は近いはず。（TailwindCSS に用意されているカラーは彩度と明度が一緒にグラデーションしている感じのカラーなので彩度だけ下げた様なカラーがない）</p>
       <p>Bootstrap では <code>btn</code> クラスと <code>btn-primary</code> のように 2 つの組み合わせで表現する。
-      恐らく <code>btn</code> でボタン形状やパディング等を、<code>btn-primary</code> の方でカラー関係を指定していると思われるが、アウトラインボタンの場合 <code>btn-primary</code> の代わりに <code>btn-outline-primary</code>、またサイズ違いの場合 <code>btn btn-primary btn-sm</code> の様な指定になるため、厳密にどの様にプロパティーの分担をしているのかはもっと細やかな検証が必要になる。</p>
-      <p>ちなみに Bootstrap の <code>warning</code> ,<code>info</code> は <code>hover</code> と <code>focus</code> 時に明るくなるが、分かりにくいので他のボタン同様暗くしている。</p>
+      恐らく <code>btn</code> でボタン形状やパディング等を、<code>btn-primary</code> の方でカラー関係を指定していると思われるが、アウトラインボタンの場合 <code>btn-primary</code> の代わりに <code>btn-outline-primary</code>、またサイズ違いの場合 <code>btn btn-primary btn-sm</code> の様な指定になるため、厳密にどの様にプロパティーの分担をしているのかはもっと細やかな検証が必要になるが、当然それは目的では無いのでやらない。</p>
+      <p>ちなみに Bootstrap の <code>warning</code> ,<code>info</code> は <code>hover</code> と <code>focus</code> 時に明るくなるが、分かりにくいので他のボタン同様暗くなるようにしている。</p>
     </div>
 
     <div><!-- 各ボタンのスタイル表示 -->
@@ -341,7 +343,7 @@
       focus:ring-4
       focus:outline-none
       focus:ring-inherit
-      disabled:text-gray-500
+      disabled:text-gray-400
       py-1.5
       px-3
       my-1

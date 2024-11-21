@@ -175,7 +175,7 @@
       focus:ring-4
       focus:outline-none
       focus:ring-inherit
-      disabled:text-gray-500
+      disabled:text-gray-400
       py-1.5
       px-3
       my-1
@@ -301,7 +301,7 @@
       hover:text-blue-800
       focus:text-blue-800
       focus:ring-inherit
-      disabled:text-gray-500
+      disabled:text-gray-400
     ;
   }
 }
