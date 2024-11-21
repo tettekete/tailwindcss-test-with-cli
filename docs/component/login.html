@@ -50,24 +50,54 @@
 		<h3 class="place-self-center">サインイン</h3>
 		<hr class="py-3">
 		<form>
-			<label for="username">メールアドレス:</label>
-			<input type="email" id="username" name="username" autocomplete="username"
-			placeholder="メールアドレス"
-			required
-			class="
-				w-full
-			">
-
-			<label for="password" class="text-slate-600">パスワード:</label>
-			<input type="password" id="password" name="password" autocomplete="current-password" required
-			placeholder="パスワード"
-			class="
-				w-full
-			">
-
-			<div class="my-6 text-gray-600 text-sm">インプットテキストフィールドのスタイルは長いので <a href="../input.css">/input.css</a> で定義しています。</div>
 			<div>
-				<button class="
+				<label for="username">メールアドレス:</label>
+				<input type="email" id="username" name="username" autocomplete="username"
+				placeholder="メールアドレス"
+				required
+				class="
+					w-full peer/email
+				">
+				<div id="usernameWarning" class="
+					my-2
+					h-0
+					peer-invalid/email:visible
+					peer-invalid/email:min-h-fit
+					invisible
+					text-pink-600
+					text-xs">
+					必須入力事項です
+				</div>
+			</div>
+
+			<div>
+				<label for="password" class="text-slate-600">パスワード:</label>
+				<input type="password" id="password" name="password" autocomplete="current-password" required
+				placeholder="パスワード"
+				class="
+					w-full peer/password
+				">
+				<div id="passwordWarning" class="
+					mt-2
+					invisible
+					h-0
+					peer-invalid/password:visible
+					peer-invalid/password:min-h-fit
+					text-pink-600
+					text-xs
+					">
+					必須入力事項です
+				</div>
+			</div>
+
+			<div class="my-6 text-gray-600 text-sm">
+				<p>インプットテキストフィールドのスタイルは長いので <a href="../input.css">/input.css</a> で定義しています。
+				</p>
+				<p><code>peer</code> を使った <code>invalid</code> 時警告は最初から出ているのは不快なので JS でコントロールするなどした方が良さそう。</p>
+			</div>
+			
+			<div>
+				<button type="button" id="loginButton" class="
 					w-full
 					bg-sky-500
 					hover:bg-sky-700
