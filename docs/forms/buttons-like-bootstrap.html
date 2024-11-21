@@ -1,0 +1,519 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link href="buttons-like-bootstrap.css" rel="stylesheet">
+  <title>Bootstrap ライクなボタンサンプル</title>
+</head>
+<body>
+  <div class="m-4">
+    <div>
+      <h1 class="mt-6 mb-4">本物の Bootstrap ボタン</h1>
+      <div>
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-success">Success</button>
+        <button class="btn btn-danger">Danger</button>
+        <button class="btn btn-warning">Warning</button>
+        <button class="btn btn-info">Info</button>
+        <button class="btn btn-light">Light</button>
+        <button class="btn btn-dark">Dark</button>
+        <button class="btn btn-link">Link</button>
+      </div>
+      <p>disabled 状態</p>
+      <div>
+        <button class="btn btn-primary" disabled>Primary</button>
+        <button class="btn btn-secondary" disabled>Secondary</button>
+        <button class="btn btn-success" disabled>Success</button>
+        <button class="btn btn-danger" disabled>Danger</button>
+        <button class="btn btn-warning" disabled>Warning</button>
+        <button class="btn btn-info" disabled>Info</button>
+        <button class="btn btn-light" disabled>Light</button>
+        <button class="btn btn-dark" disabled>Dark</button>
+        <button class="btn btn-link" disabled>Link</button>
+      </div>
+    </div>
+    <div>
+      <h1 class="mt-6 mb-4">TailwindCSS による Bootstrap ライクなボタンサンプル</h1>
+      <div>
+        <button class="btn-primary-aio">Primary</button>
+        <button class="btn-secondary-aio">Secondary</button>
+        <button class="btn-success-aio">Success</button>
+        <button class="btn-danger-aio">Danger</button>
+        <button class="btn-warning-aio">Warning</button>
+        <button class="btn-info-aio">Info</button>
+        <button class="btn-light-aio">Light</button>
+        <button class="btn-dark-aio">Dark</button>
+        <button class="btn-link-aio">Link</button>
+      </div>
+      <p>disable 状態</p>
+      <div>
+        <button class="btn-primary-aio" disabled>Primary</button>
+        <button class="btn-secondary-aio" disabled>Secondary</button>
+        <button class="btn-success-aio" disabled>Success</button>
+        <button class="btn-danger-aio" disabled>Danger</button>
+        <button class="btn-warning-aio" disabled>Warning</button>
+        <button class="btn-info-aio" disabled>Info</button>
+        <button class="btn-light-aio" disabled>Light</button>
+        <button class="btn-dark-aio" disabled>Dark</button>
+        <button class="btn-link-aio" disabled>Link</button>
+      </div>
+    </div>
+
+    <div class="my-4">
+      <p>Success の disabled 用の彩度だけ落としたスモークグリーンに近い色が TailwindCSS のデフォルトカラーに無いが他は近いはず。（TailwindCSS に用意されているカラーは彩度と明度が一緒にグラデーションしている感じのカラーなので彩度だけ下げた様なカラーがない）</p>
+      <p>Bootstrap では <code>btn</code> クラスと <code>btn-primary</code> のように 2 つの組み合わせで表現する。
+      恐らく <code>btn</code> でボタン形状やパディング等を、<code>btn-primary</code> の方でカラー関係を指定していると思われるが、アウトラインボタンの場合 <code>btn-primary</code> の代わりに <code>btn-outline-primary</code>、またサイズ違いの場合 <code>btn btn-primary btn-sm</code> の様な指定になるため、厳密にどの様にプロパティーの分担をしているのかはもっと細やかな検証が必要になる。</p>
+      <p>ちなみに Bootstrap の <code>warning</code> ,<code>info</code> は <code>hover</code> と <code>focus</code> 時に明るくなるが、分かりにくいので他のボタン同様暗くしている。</p>
+    </div>
+
+    <div><!-- 各ボタンのスタイル表示 -->
+    <h1 class="mt-6 mb-4">各ボタンスタイルの詳細</h1>
+      <div class="flex flex-1 flex-wrap gap-y-6 gap-x-3">
+        <!-- Primary -->
+        <div calss="w-60">
+          <div>
+            <button class="btn-primary-aio">Primary</button>
+          </div>
+          <div>
+            <pre>
+@layer components {
+  .btn-primary {
+    @apply
+      rounded-md
+      text-base
+      text-white
+      bg-blue-500
+      border-blue-500
+      hover:bg-blue-700
+      focus:bg-blue-700
+      focus:ring-4
+      focus:outline-none
+      focus:ring-blue-300
+      disabled:bg-blue-300
+      py-1.5
+      px-3
+      my-1
+      mx-0.5
+    ;
+  }
+}</pre>
+          </div>
+        </div>
+
+        <!-- Secondary -->
+        <div calss="w-60">
+          <div>
+            <button class="btn-secondary-aio">Secondary</button>
+          </div>
+          <div>
+            <pre>
+@layer components {
+  .btn-secondary {
+    @apply
+      rounded-md
+      text-base
+      text-white
+      bg-gray-500
+      border-gray-500
+      hover:bg-gray-600
+      focus:bg-gray-600
+      focus:ring-4
+      focus:outline-none
+      focus:ring-gray-300
+      disabled:bg-gray-300
+      py-1.5
+      px-3
+      my-1
+      mx-0.5
+    ;
+  }
+}</pre>
+          </div>
+        </div>
+
+        <!-- Success -->
+        <div calss="w-60">
+          <div>
+            <button class="btn-success-aio">Success</button>
+          </div>
+          <div>
+            <pre>
+@layer components {
+  .btn-success {
+    @apply
+      rounded-md
+      text-base
+      text-white
+      bg-emerald-600
+      border-emerald-600
+      hover:bg-emerald-700
+      focus:bg-emerald-700
+      focus:ring-4
+      focus:outline-none
+      focus:ring-emerald-200
+      disabled:bg-emerald-200
+      py-1.5
+      px-3
+      my-1
+      mx-0.5
+    ;
+  }
+}</pre>
+          </div>
+        </div>
+
+        <!-- Danger -->
+        <div calss="w-60">
+          <div>
+            <button class="btn-danger-aio">Danger</button>
+          </div>
+          <div>
+            <pre>
+@layer components {
+  .btn-danger {
+    @apply
+      rounded-md
+      text-base
+      text-white
+      bg-red-600
+      border-red-600
+      hover:bg-red-700
+      focus:bg-red-700
+      focus:ring-4
+      focus:outline-none
+      focus:ring-red-300
+      disabled:bg-red-300
+      py-1.5
+      px-3
+      my-1
+      mx-0.5
+    ;
+  }
+}</pre>
+          </div>
+        </div>
+
+        <!-- Warning -->
+        <div calss="w-60">
+          <div>
+            <button class="btn-warning-aio">Warning</button>
+          </div>
+          <div>
+            <pre>
+@layer components {
+  .btn-warning {
+    @apply
+      rounded-md
+      text-base
+      text-black
+      bg-yellow-400
+      border-yellow-400
+      hover:bg-yellow-500
+      focus:bg-yellow-500
+      focus:ring-4
+      focus:outline-none
+      focus:ring-yellow-200
+      disabled:text-gray-400
+      disabled:bg-yellow-200
+      py-1.5
+      px-3
+      my-1
+      mx-0.5
+    ;
+  }
+}</pre>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div calss="w-60">
+          <div>
+            <button class="btn-info-aio">Info</button>
+          </div>
+          <div>
+            <pre>
+@layer components {
+  .btn-info {
+    @apply
+      rounded-md
+      text-base
+      text-black
+      bg-cyan-400
+      border-cyan-400
+      hover:bg-cyan-500
+      focus:bg-cyan-500
+      focus:ring-4
+      focus:outline-none
+      focus:ring-cyan-300
+      disabled:text-gray-400
+      disabled:bg-cyan-300
+      py-1.5
+      px-3
+      my-1
+      mx-0.5
+    ;
+  }
+}</pre>
+          </div>
+        </div>
+        
+        <!-- Light -->
+        <div calss="w-60">
+          <div>
+            <button class="btn-light-aio">Light</button>
+          </div>
+          <div>
+            <pre>
+@layer components {
+  .btn-light {
+    @apply
+      rounded-md
+      text-base
+      text-black
+      bg-gray-50
+      border-gray-50
+      hover:bg-gray-100
+      focus:bg-gray-100
+      focus:ring-4
+      focus:outline-none
+      focus:ring-gray-300
+      disabled:text-gray-400
+      py-1.5
+      px-3
+      my-1
+      mx-0.5
+    ;
+  }
+}</pre>
+          </div>
+        </div>
+
+        <!-- Dark -->
+        <div calss="w-60">
+          <div>
+            <button class="btn-dark-aio">Dark</button>
+          </div>
+          <div>
+            <pre>
+@layer components {
+  .btn-dark {
+    @apply
+      rounded-md
+      text-base
+      text-white
+      bg-gray-900
+      border-gray-900
+      hover:bg-gray-700
+      focus:bg-gray-700
+      focus:ring-4
+      focus:outline-none
+      focus:ring-gray-400
+      disabled:bg-gray-500
+      py-1.5
+      px-3
+      my-1
+      mx-0.5
+    ;
+  }
+}</pre>
+          </div>
+        </div>
+
+        <!-- Link -->
+        <div calss="w-60">
+          <div>
+            <button class="btn-link-aio">Link</button>
+          </div>
+          <div>
+            <pre>
+@layer components {
+  .btn-link {
+    @apply
+      rounded-md
+      text-base
+      text-blue-600
+      underline
+      hover:text-blue-800
+      focus:text-blue-800
+      focus:ring-4
+      focus:outline-none
+      focus:ring-inherit
+      disabled:text-gray-500
+      py-1.5
+      px-3
+      my-1
+      mx-0.5
+    ;
+  }
+}</pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div><!-- btn と btn-*** で分けるとしたら-->
+    <h2 class="mt-6 mb-4">btn クラスと btn-*** クラスに分けるとしたら</h2>
+    <h3>btn クラス相当部分</h3>
+    <p>この HTML では本物の Bootstrap も読み込んでいるので実際にはプリフィックスとして <code>t</code> を付けています。 e.g.:<code>btn</code> → <code>tbtn</code> </p>
+    <pre>
+@layer components {
+  .btn {
+    @apply
+      rounded-md
+      text-base
+      focus:ring-4
+      focus:outline-none
+      py-1.5
+      px-3
+      my-1
+      mx-0.5
+      ;
+}
+    </pre>
+    <h3>btn-***（カラバリ系）</h3>
+    <pre>
+@layer components {
+  .btn-primary {
+    @apply
+      text-white
+      bg-blue-500
+      border-blue-500
+      hover:bg-blue-700
+      focus:bg-blue-700
+      focus:ring-blue-300
+      disabled:bg-blue-300
+      ;
+  }
+
+  .btn-secondary {
+    @apply
+      text-white
+      bg-gray-500
+      border-gray-500
+      hover:bg-gray-600
+      focus:bg-gray-600
+      focus:ring-gray-300
+      disabled:bg-gray-300
+    ;
+  }
+
+  .btn-success {
+    @apply
+      text-white
+      bg-emerald-600
+      border-emerald-600
+      hover:bg-emerald-700
+      focus:bg-emerald-700
+      focus:ring-emerald-200
+      disabled:bg-emerald-200
+    ;
+  }
+
+  .btn-danger {
+    @apply
+      text-white
+      bg-red-600
+      border-red-600
+      hover:bg-red-700
+      focus:bg-red-700
+      focus:ring-red-300
+      disabled:bg-red-300
+    ;
+  }
+
+  .btn-warning {
+    @apply
+      text-black
+      bg-yellow-400
+      border-yellow-400
+      hover:bg-yellow-500
+      focus:bg-yellow-500
+      focus:ring-yellow-200
+      disabled:text-gray-400
+      disabled:bg-yellow-200
+    ;
+  }
+
+  .btn-info {
+    @apply
+      text-black
+      bg-cyan-400
+      border-cyan-400
+      hover:bg-cyan-500
+      focus:bg-cyan-500
+      focus:ring-cyan-300
+      disabled:text-gray-400
+      disabled:bg-cyan-300
+    ;
+  }
+
+  .btn-light {
+    @apply
+      text-black
+      bg-gray-50
+      border-gray-50
+      hover:bg-gray-100
+      focus:bg-gray-100
+      focus:ring-gray-300
+      disabled:text-gray-400
+    ;
+  }
+
+  .btn-dark {
+    @apply
+      text-white
+      bg-gray-900
+      border-gray-900
+      hover:bg-gray-700
+      focus:bg-gray-700
+      focus:ring-gray-400
+      disabled:bg-gray-500
+    ;
+  }
+
+  .btn-link {
+    @apply
+      text-blue-600
+      underline
+      hover:text-blue-800
+      focus:text-blue-800
+      focus:ring-inherit
+      disabled:text-gray-500
+    ;
+  }
+}
+    </pre>
+      <div>
+        <h3>テスト</h3>
+        <div>
+          <button class="tbtn tbtn-primary">Primary</button>
+          <button class="tbtn tbtn-secondary">Secondary</button>
+          <button class="tbtn tbtn-success">Success</button>
+          <button class="tbtn tbtn-danger">Danger</button>
+          <button class="tbtn tbtn-warning">Warning</button>
+          <button class="tbtn tbtn-info">Info</button>
+          <button class="tbtn tbtn-light">Light</button>
+          <button class="tbtn tbtn-dark">Dark</button>
+          <button class="tbtn tbtn-link">Link</button>
+        </div>
+        <p>disable 状態</p>
+        <div>
+          <button class="tbtn tbtn-primary" disabled>Primary</button>
+          <button class="tbtn tbtn-secondary" disabled>Secondary</button>
+          <button class="tbtn tbtn-success" disabled>Success</button>
+          <button class="tbtn tbtn-danger" disabled>Danger</button>
+          <button class="tbtn tbtn-warning" disabled>Warning</button>
+          <button class="tbtn tbtn-info" disabled>Info</button>
+          <button class="tbtn tbtn-light" disabled>Light</button>
+          <button class="tbtn tbtn-dark" disabled>Dark</button>
+          <button class="tbtn tbtn-link" disabled>Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
