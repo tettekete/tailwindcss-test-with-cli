@@ -2,9 +2,13 @@
   "scripts": {
     "dev": "tailwindcss -i docs/input.css -o docs/output.css --watch",
     "dev:min": "tailwindcss -i docs/tailwind.min.src.css -o docs/tailwind.min.css --watch",
+    "dev:sub": "node ./bin/build-tailwindcss.js ./docs",
     "gen-index": "node ./bin/mkindex.js ./docs"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.14"
+  },
+  "dependencies": {
+    "chokidar": "^4.0.1"
   }
 }
