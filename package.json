@@ -6,9 +6,7 @@
     "gen-index": "node ./bin/mkindex.js ./docs"
   },
   "devDependencies": {
+    "chokidar": "^4.0.1",
     "tailwindcss": "^3.4.14"
-  },
-  "dependencies": {
-    "chokidar": "^4.0.1"
   }
 }
