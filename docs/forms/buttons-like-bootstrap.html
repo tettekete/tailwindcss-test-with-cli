@@ -65,10 +65,15 @@
     <div class="my-4">
       <h2>概要</h2>
       <p>Bootstrap のボタンデザイン再現の過程で TailwindCSS でどの様な設定が必要なのか、どんな特徴があるのか、をつかむのが目的。</p>
-      <p>Success と Warning の disabled 用の彩度だけ落としたカラーが TailwindCSS のデフォルトカラーに無いのでイマイチ似てないが他は近いはず。（TailwindCSS に用意されているカラーは彩度と明度が一緒にグラデーションしている感じのカラーなので彩度だけ下げた様なカラーがない）</p>
-      <p>Bootstrap では <code>btn</code> クラスと <code>btn-primary</code> のように 2 つの組み合わせで表現する。
-      恐らく <code>btn</code> でボタン形状やパディング等を、<code>btn-primary</code> の方でカラー関係を指定していると思われるが、アウトラインボタンの場合 <code>btn-primary</code> の代わりに <code>btn-outline-primary</code>、またサイズ違いの場合 <code>btn btn-primary btn-sm</code> の様な指定になるため、厳密にどの様にプロパティーの分担をしているのかはもっと細やかな検証が必要になるが、当然それは目的では無いのでやらない。</p>
-      <p>ちなみに Bootstrap の <code>warning</code> ,<code>info</code> は <code>hover</code> と <code>focus</code> 時に明るくなるが、分かりにくいので他のボタン同様暗くなるようにしている。</p>
+
+      <h3>差異や変更点など</h3>
+      <ul>
+        <li>Success と Warning の <code>disabled</code> 用の彩度だけ落としたカラーが TailwindCSS のデフォルトにないのでそこだけ似ていない</li>
+        <li>Bootstrap 版は押下時の反応がないので、TailwindCSS 版では押下時に枠が出るようにした</li>
+        <li>↑の関係で focus 時の枠を細めに変更</li>
+        <li><code>warning</code> ,<code>info</code> の <code>hover</code>, <code>focus</code> 時 Bootstrap は僅かに明るくする仕様だが、分かりにくいので暗くするように変更</li>
+        <li>Bootstrap では <code>btn</code> クラスと <code>btn-primary</code> のように 2 つの組み合わせで表現する仕組みだが、ここでは1つのクラスにまとめている（後半で分けるケースも一応検討している）</li>
+      </ul>
     </div>
 
     <div><!-- 各ボタンのスタイル表示 -->
@@ -91,10 +96,14 @@
       border-blue-500
       hover:bg-blue-700
       focus:bg-blue-700
-      focus:ring-4
+      focus:ring-2
       focus:outline-none
+      focus:ring-offset-0
       focus:ring-blue-300
+      active:ring-4
+      active:ring-blue-300
       disabled:bg-blue-300
+      disabled:active:ring-0
       py-1.5
       px-3
       my-1
@@ -122,10 +131,14 @@
       border-gray-500
       hover:bg-gray-600
       focus:bg-gray-600
-      focus:ring-4
+      focus:ring-2
       focus:outline-none
+      focus:ring-offset-0
       focus:ring-gray-300
+      active:ring-4
+      active:ring-gray-300
       disabled:bg-gray-300
+      disabled:active:ring-0
       py-1.5
       px-3
       my-1
@@ -153,10 +166,14 @@
       border-emerald-600
       hover:bg-emerald-700
       focus:bg-emerald-700
-      focus:ring-4
+      focus:ring-2
       focus:outline-none
+      focus:ring-offset-0
       focus:ring-emerald-200
+      active:ring-4
+      active:ring-emerald-200
       disabled:bg-emerald-200
+      disabled:active:ring-0
       py-1.5
       px-3
       my-1
@@ -184,10 +201,14 @@
       border-red-600
       hover:bg-red-700
       focus:bg-red-700
-      focus:ring-4
+      focus:ring-2
       focus:outline-none
+      focus:ring-offset-0
       focus:ring-red-300
+      active:ring-4
+      active:ring-red-300
       disabled:bg-red-300
+      disabled:active:ring-0
       py-1.5
       px-3
       my-1
@@ -215,11 +236,15 @@
       border-yellow-400
       hover:bg-yellow-500
       focus:bg-yellow-500
-      focus:ring-4
+      focus:ring-2
       focus:outline-none
+      focus:ring-offset-0
       focus:ring-yellow-200
+      active:ring-4
+      active:ring-yellow-200
       disabled:text-gray-400
       disabled:bg-yellow-200
+      disabled:active:ring-0
       py-1.5
       px-3
       my-1
@@ -247,11 +272,15 @@
       border-cyan-400
       hover:bg-cyan-500
       focus:bg-cyan-500
-      focus:ring-4
+      focus:ring-2
       focus:outline-none
+      focus:ring-offset-0
       focus:ring-cyan-300
+      active:ring-4
+      active:ring-cyan-300
       disabled:text-gray-400
       disabled:bg-cyan-300
+      disabled:active:ring-0
       py-1.5
       px-3
       my-1
@@ -277,13 +306,17 @@
       text-black
       bg-gray-50
       border-gray-50
-      hover:bg-gray-100
-      focus:bg-gray-100
-      focus:ring-4
+      hover:bg-gray-200
+      focus:bg-gray-200
+      focus:ring-2
       focus:outline-none
+      focus:ring-offset-0
       focus:ring-gray-300
+      active:ring-4
+      active:ring-gray-300
       disabled:text-gray-400
       disabled:bg-gray-50
+      disabled:active:ring-0
       py-1.5
       px-3
       my-1
@@ -309,12 +342,16 @@
       text-white
       bg-gray-900
       border-gray-900
-      hover:bg-gray-700
-      focus:bg-gray-700
-      focus:ring-4
+      hover:bg-gray-600
+      focus:bg-gray-600
+      focus:ring-2
       focus:outline-none
+      focus:ring-offset-0
       focus:ring-gray-400
+      active:ring-4
+      active:ring-gray-400
       disabled:bg-gray-500
+      disabled:active:ring-0
       py-1.5
       px-3
       my-1
@@ -341,10 +378,14 @@
       underline
       hover:text-blue-800
       focus:text-blue-800
-      focus:ring-4
+      focus:ring-2
       focus:outline-none
+      focus:ring-offset-0
       focus:ring-inherit
+      active:ring-4
+      active:ring-inherit
       disabled:text-gray-400
+      disabled:active:ring-0
       py-1.5
       px-3
       my-1
@@ -370,6 +411,8 @@
       text-base
       focus:ring-4
       focus:outline-none
+      focus:ring-offset-0
+      active:ring-4
       py-1.5
       px-3
       my-1
@@ -388,6 +431,7 @@
       hover:bg-blue-700
       focus:bg-blue-700
       focus:ring-blue-300
+      active:ring-blue-300
       disabled:bg-blue-300
       ;
   }
@@ -400,6 +444,7 @@
       hover:bg-gray-600
       focus:bg-gray-600
       focus:ring-gray-300
+      active:ring-gray-300
       disabled:bg-gray-300
     ;
   }
@@ -412,6 +457,7 @@
       hover:bg-emerald-700
       focus:bg-emerald-700
       focus:ring-emerald-200
+      active:ring-emerald-200
       disabled:bg-emerald-200
     ;
   }
@@ -424,6 +470,7 @@
       hover:bg-red-700
       focus:bg-red-700
       focus:ring-red-300
+      active:ring-red-300
       disabled:bg-red-300
     ;
   }
@@ -436,6 +483,7 @@
       hover:bg-yellow-500
       focus:bg-yellow-500
       focus:ring-yellow-200
+      active:ring-yellow-200
       disabled:text-gray-400
       disabled:bg-yellow-200
     ;
@@ -449,6 +497,7 @@
       hover:bg-cyan-500
       focus:bg-cyan-500
       focus:ring-cyan-300
+      active:ring-cyan-300
       disabled:text-gray-400
       disabled:bg-cyan-300
     ;
@@ -459,9 +508,10 @@
       text-black
       bg-gray-50
       border-gray-50
-      hover:bg-gray-100
-      focus:bg-gray-100
+      hover:bg-gray-200
+      focus:bg-gray-200
       focus:ring-gray-300
+      active:ring-gray-300
       disabled:text-gray-400
       disabled:bg-gray-50
     ;
@@ -472,9 +522,10 @@
       text-white
       bg-gray-900
       border-gray-900
-      hover:bg-gray-700
-      focus:bg-gray-700
+      hover:bg-gray-600
+      focus:bg-gray-600
       focus:ring-gray-400
+      active:ring-gray-400
       disabled:bg-gray-500
     ;
   }
@@ -486,7 +537,9 @@
       hover:text-blue-800
       focus:text-blue-800
       focus:ring-inherit
-      disabled:text-gray-500
+      active:ring-inherit
+      disabled:text-gray-400
+      disabled:active:ring-0
     ;
   }
 }
