@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../tailwind.min.css" rel="stylesheet">
+  <title>セレクトメニュー(select)</title>
+</head>
+<body>
+  <div class="m-4">
+		<section>
+			<div>
+				<h1>tailwindcss のデフォルト</h1>
+				<h2>通常の select </h2>
+				<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+					<label for="pet-select">あなたが飼いたいペットは？</label>
+
+					<select name="pets" id="pet-select">
+						<option value="">--選択してください--</option>
+						<option value="dog">犬</option>
+						<option value="cat">猫</option>
+						<option value="hamster">ハムスター</option>
+						<option value="java-sparrow">文鳥</option>
+						<option value="rabbit">うさぎ</option>
+						<option value="goldfish">金魚</option>
+					</select>
+				</form>
+
+					
+				<h2>size=4 </h2>
+				<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+					<label for="pet-select">あなたが飼いたいペットは？</label>
+
+					<select name="pets" id="pet-select" size="4" >
+						<option value="">--選択してください--</option>
+						<option value="dog">犬</option>
+						<option value="cat">猫</option>
+						<option value="hamster">ハムスター</option>
+						<option value="java-sparrow">文鳥</option>
+						<option value="rabbit">うさぎ</option>
+						<option value="goldfish">金魚</option>
+					</select>
+				</form>
+			</div>
+		</section>
+
+
+		<section>
+			<div>
+				<h1 class="pt-6 pb-4">ノーマル風に CSS を設定する</h1>
+				<h2>通常の select </h2>
+				<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+					<label for="pet-select">あなたが飼いたいペットは？</label>
+
+					<select name="pets" id="pet-select"
+					class="
+						border border-solid rounded-md text-sm p-1
+					">
+						<option value="">--選択してください--</option>
+						<option value="dog">犬</option>
+						<option value="cat">猫</option>
+						<option value="hamster">ハムスター</option>
+						<option value="java-sparrow">文鳥</option>
+						<option value="rabbit">うさぎ</option>
+						<option value="goldfish">金魚</option>
+					</select>
+				</form>
+
+					
+				<h2>size=4 </h2>
+				<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+					<label for="pet-select"
+					class="
+						align-top
+					">
+					あなたが飼いたいペットは？</label>
+
+					<select name="pets" id="pet-select" size="4"
+					class="
+						border border-solid rounded-md text-sm p-1
+					">
+						<option value="">--選択してください--</option>
+						<option value="dog">犬</option>
+						<option value="cat">猫</option>
+						<option value="hamster">ハムスター</option>
+						<option value="java-sparrow">文鳥</option>
+						<option value="rabbit">うさぎ</option>
+						<option value="goldfish">金魚</option>
+					</select>
+				</form>
+			</div>
+			<div>
+			<p>あまり弄る必要も無いので、このくらいで良いと思われる。</p>
+			<p>ラベルとセレクトを縦に並べたい場合は <code>label</code> と <code>slect</code> のクラスに <code>block</code> を指定すれば OK。</p>
+			</div>
+		</section>
+
+
+	</div>
+</body>

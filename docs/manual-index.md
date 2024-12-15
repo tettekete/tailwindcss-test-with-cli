@@ -8,6 +8,7 @@
 	- [サンプル HTML 系](#サンプル-html-系)
 		- [ページレイアウト系](#ページレイアウト系)
 		- [form 系](#form-系)
+		- [その他・一般](#その他一般)
 	- [TailwindCSS の各クラスの挙動調査系](#tailwindcss-の各クラスの挙動調査系)
 - [番外編](#番外編)
 
@@ -33,6 +34,15 @@
 - [よくありそうなログインコンポーネント](component/login.html)
 - [“`input type="text"` 系インプットフィールドサンプル”](forms/input-text.html)
 - [“`button` - Bootstrap ライクなボタンサンプル”](forms/buttons-like-bootstrap.html)
+- [“チェックボックスのサンプル”](forms/check-box.html)
+- [“ラジオボタンのサンプル”](forms/radio-buttons.html)
+- [“プルダウンメニュー(select)”](forms/select-menu.html)
+
+
+#### その他・一般
+
+- [“dialog タグと details タグはフォールディング出来る”](common/folding_content.html)
+- [“relative と absolute について”](common/relative-absolute.html)
 
 ### TailwindCSS の各クラスの挙動調査系
 

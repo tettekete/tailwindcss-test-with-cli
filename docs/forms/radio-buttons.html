@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../tailwind.min.css" rel="stylesheet">
+  <title>ラジオボタンのサンプル</title>
+</head>
+<body>
+  <div class="m-4">
+		<section>
+			<div>
+				<h1>ラジオボタン</h1>
+					<section>
+						<div>
+							<h2>Tailwind CSS 公式のサンプル</h2>
+							<div>
+								<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+									<fieldset>
+										<legend>Published status</legend>
+
+										<input id="draft" class="peer/draft" type="radio" name="status" checked />
+										<label for="draft" class="text-gray-400 peer-checked/draft:text-sky-500">Draft</label>
+
+										<input id="published" class="peer/published" type="radio" name="status" />
+										<label for="published" class="text-gray-400 peer-checked/published:text-sky-500">Published</label>
+
+										<div class="hidden peer-checked/draft:block">Drafts are only visible to administrators.</div>
+										<div class="hidden peer-checked/published:block">Your post will be publicly visible on your site.</div>
+									</fieldset>
+								</form>
+							</div>
+							<div>
+							<p>これちょっとよく分からないな。説明として表示される "Drafts are〜" の方の <code>&lt;div&gt;</code> は<code>class="hidden peer-checked/draft:block"</code> でもう片方が <code>class="hidden peer-checked/published:block"</code> なのだが、デフォルトで <code>hidden</code> が効くのは分かる、だが <code>peer-checked/published:block</code> で表示されるのがよく分からない。
+							</p>
+							<p><strong>→ 分かった <code>hidden</code> = <code>display: none;</code> で <code>block = display: block;</code> だから。</strong>
+							</p>
+							<p><code>hidden</code> はタグのステートと勘違いした。</p>
+							</div>
+						</div>
+					</section>
+
+
+					<section>
+						<div>
+							<h2>縦に並べるテスト</h2>
+							<div>
+								<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+									<fieldset>
+										<legend>公開ステータス</legend>
+
+										
+										<div>
+											<div>
+												<input id="draft_b" class="peer/draft_b" type="radio" name="status_b" checked />
+												<label for="draft_b" class="text-gray-400 peer-checked/draft_b:text-sky-500">Draft</label>
+												<div class="hidden peer-checked/draft_b:block">ドラフトは管理者にしか見えないよ</dov>
+											<div>
+											<div>
+												<input id="published_b" class="peer/published_b" type="radio" name="status_b" />
+												<label for="published_b" class="text-gray-400 peer-checked/published_b:text-sky-500">Published</label>
+												<div class="hidden peer-checked/published_b:block">内容はサイトに公開されるよ</div>
+											</div>
+										</div>
+
+									</fieldset>
+								</form>
+							</div>
+							<div>
+							<p>単純にブロック要素である &lt;div&gt; で囲めば縦並びになる。が、上の例のヒントテキストが出てこなくなる。</p>
+							<p>それぞれを同じ div に入れると・・・id とかちゃんとユニーク名に変えているのに挙動がおかしくなった・・・。</p>
+							<p>まあ、ラベルの後ろにヒントテキストが出てくるのがベター。</p>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<div>
+							<h2>ヒントをラベルの後ろに出せないかテスト</h2>
+							<div>
+								<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+									<fieldset>
+										<legend>Published status</legend>
+
+										
+										<div>
+											<input id="draft_c" class="peer/draft_c" type="radio" name="status_c" checked />
+											<label for="draft_c" class="text-gray-400 peer-checked/draft_c:text-sky-500">Draft</label>
+											<div class="hidden peer-checked/draft_c:inline">Drafts are only visible to administrators.</div>
+										<div>
+
+										<div>
+											<input id="published_c" class="peer/published_c" type="radio" name="status_c" />
+											<label for="published_c" class="text-gray-400 peer-checked/published_c:text-sky-500">Published</label>
+											<div class="hidden peer-checked/published_c:inline">Your post will be publicly visible on your site.</div>
+										</div>
+
+									</fieldset>
+								</form>
+							</div>
+							<div>
+	
+							<p>それぞれを同じ <code>div</code> に入れてヒントテキストの <code>div</code> のクラスを <code>peer-checked/draft_c:inline</code> という風に <code>inline</code> にするだけで行けた。</p>
+							<p>さらにインデントが揃うのがベターではあるが。</p>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<div>
+							<h2>縦に並べるテスト - grid でやってみる</h2>
+							<div>
+								<p>ヒントテキストのインデントを合わせる為に grid を試してみる。</p>
+								<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+									<fieldset>
+										<legend>Published status</legend>
+
+										
+										<div class="grid grid-cols-3 justify-start auto-rows-min">
+											<input id="draft4" class="peer/draft" type="radio" name="status" checked />
+											<label for="draft4" class="text-gray-400 peer-checked/draft:text-sky-500">Draft</label>
+											<div class="hidden peer-checked/draft:block">Drafts are only visible to administrators.</div>
+										</div>
+										<div class="grid grid-cols-3 auto-rows-min">
+											<input id="published4" class="peer/published" type="radio" name="status" />
+											<label for="published4" class="text-gray-400 peer-checked/published:text-sky-500">Published</label>
+											<div class="hidden peer-checked/published:block">Your post will be publicly visible on your site.</div>
+										</div>
+
+									</fieldset>
+								</form>
+							</div>
+							<div>
+							<p>ヒントテキストのインデントは揃うが、gird だと各カラムの width がコントロールできないのでキビシイ。あと Chrome だとなぜかラジオボタンが大きく表示される。</p>
+							</div>
+						</div>
+					</section>
+
+
+					<section>
+						<div>
+							<h2>縦に並べるテスト - flex でやってみる</h2>
+							<div>
+								<p>ヒントテキストのインデントを合わせる為に flex を試してみる。</p>
+								<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+									<fieldset class="bg-slate-100 space-y-3 px-2">
+										<legend class="bg-white rounded-md shadow-sm p-2 text-base font-semibold text-slate-900 dark:text-slate-200">Published status</legend>
+
+										
+										<div>
+											<div class="flex justify-start gap-2">
+												<input id="draft4" class="peer/draft" type="radio" name="status" checked />
+												<label for="draft4" class="min-w-32 text-gray-400 peer-checked/draft:text-sky-500">Draft</label>
+												<div class="hidden peer-checked/draft:block">Drafts are only visible to administrators.</div>
+											</div>
+											<div class="flex justify-start gap-2">
+												<input id="published4" class="peer/published" type="radio" name="status" />
+												<label for="published4" class="min-w-32 text-gray-400 peer-checked/published:text-sky-500">Published</label>
+												<div class="hidden peer-checked/published:block">Your post will be publicly visible on your site.</div>
+											</div>
+										</div>
+
+									</fieldset>
+								</form>
+							</div>
+							<div>
+							<p>flex の方がすんなり行く。</p>
+							</div>
+						</div>
+					</section>
+
+
+			</div>
+		</section>
+	</div>
+</body>

@@ -1,0 +1,481 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../tailwind.min.css" rel="stylesheet">
+  <title>チェックボックスのサンプル</title>
+</head>
+<body>
+  <div class="m-4">
+		<h1>チェックボックス</h1>
+		<div>
+			<h2>デフォルト</h2>
+				<div>
+					<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+					
+						<input type="checkbox" name="category" value="street" id="category-street">
+						<label for="category-street">ストリート</label>
+					
+						<input type="checkbox" name="category" value="tourer" id="category-tourer" checked>
+						<label for="category-tourer">ツアラー</label>
+
+						<input type="checkbox" name="category" value="sports" id="category-sports">
+						<label for="category-sports">スポーツ</label>
+					
+						<input type="checkbox" name="category" value="dart" id="category-dart">
+						<label for="category-dart">ダート</label>
+					</form>
+					<div>
+						<p>チェックボックス自体のデフォルト状態は <code>button</code> や <code>text input</code> とは異なり、ブラウザのデフォルトとあまり変わらない模様。</p>
+					</div>
+				</div>
+
+			<section>
+				<h2>チェックボックスの見た目に関するコントロール</h2>
+				<div>
+					<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+						<label>
+						<input type="checkbox" name="color" value="bg-pink-500" class="
+							bg-pink-500 checked:bg-yellow-500">
+						bg-pink-500 checked:bg-yellow-500</label>
+
+						
+						<label>
+						<input type="checkbox" name="color" value="shadow-md" class="
+							shadow-md">
+						shadow-md</label>
+
+
+						<label>
+						<input type="checkbox" name="color" value="shadow-inner" class="
+							shadow-inner">
+						shadow-inner</label>
+
+						
+					</form>
+
+					<p>Safari ではいずれも反映されない、Chrome,Firefox でも反映されるのはドロップシャドウのみ。</p>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="mt-4 mb-2">サイズのコントロールは size-** ？</h2>
+				<p>Chrome と Firefox では有効だが、Safari ではチェックボックス自体のサイズは変わらない。</p>
+				<div>
+					<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+						<label for="size-test-size-3.5">
+						<input type="checkbox" name="size-test" value="size-3.5" id="size-test-size-3.5" class="
+							size-3.5">
+						size-3.5</label>
+						
+						<label for="size-test-size-7">
+						<input type="checkbox" name="size-test" value="size-7" id="size-test-size-7"
+						checked
+						class="
+							size-7">
+						size-7</label>
+						<input type="checkbox" name="size-test" value="size-14" id="size-test-size-14" class="
+							size-14">
+						<label for="size-test-size-14">size-14</label>
+						<input type="checkbox" name="size-test" value="size-28" id="size-test-size-28" 
+						checked
+						class="
+							size-28">
+						<label for="size-test-size-28">size-28</label>
+					</form>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="my-4">サイズのコントロールは h-** + w-** ?</h2>
+				<p>Chrome と Firefox では有効だが、Safari ではチェックボックス自体のサイズは変わらない。</p>
+				<div>
+					<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+						<label for="size-test-hw-3.5">
+						<input type="checkbox" name="size-test" value="size-3.5" id="size-test-hw-3.5" class="
+							h-3.5 w-3.5">
+						h-3.5 w-3.5</label>
+						
+						<label for="size-test-hw-7">
+						<input type="checkbox" name="size-test" value="size-7" id="size-test-hw-7" 
+						checked
+						class="
+							h-7 w-7
+							rounded">
+						h-7 w-7</label>
+						<input type="checkbox" name="size-test" value="size-14" id="size-test-hw-14" class="
+							h-14 w-14">
+						<label for="size-test-hw-14">h-14 w-14</label>
+						<input type="checkbox" name="size-test" value="size-28" id="size-test-hw-28" 
+						checked
+						class="
+							h-28 w-28">
+						<label for="size-test-size-28">h-28 w-28</label>
+					</form>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="my-4">appearance-none でフルカスタマイズ？</h2>
+				<p><code>appearance-none</code> を用いてブラウザデフォルトのチェックボックス描画を無効化し、全ての指定を行えば Safari でもサイズ変更に追随してくれる。が、スタイル指定がかなり複雑になる。</p>
+				<p>特にチェックボックス内のチェックマークは SVG で描画してボックスに重ねる必要がある。この SVG 要素のための <code>label</code> タグと説明のための <code>label</code> タグを分ける必要があり、<code>label</code> タグは <code>for</code> 属性を用いた書き方に限定される。</p>
+				<p>その代わりにチェック時のカラーも <code>shadow-inner</code> <code>border</code> <code>rounded</code> 等々大抵の指定が出来る。</p>
+				<div>
+					<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+						<!-- size: 3.5 -->
+						<div class="inline-flex items-center">
+							<label for="appearance-none-size-3.5" class="
+								flex items-center cursor-pointer relative
+							">
+							<input type="checkbox"
+								name="size-test"
+								value="size-3.5"
+								id="appearance-none-size-3.5"
+								class="
+								peer
+								appearance-none
+								size-3.5
+								cursor-pointer
+								rounded
+								border
+								border-solid
+								border-gray-400
+								shadow-inner
+
+								checked:bg-blue-600
+							">
+							<span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
+									<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+								</svg>
+							</span>
+							</label>
+							<label for="appearance-none-size-3.5"
+							class="cursor-pointer ml-2 text-slate-600 text-sm">size-3.5</label>
+						</div>
+
+						<!-- size: 7 -->
+						<div class="inline-flex items-center">
+							<label for="appearance-none-size-7" class="
+								flex
+								items-center
+								cursor-pointer
+								relative
+							">
+							<input type="checkbox"
+								name="size-test"
+								value="size-7"
+								id="appearance-none-size-7"
+								checked
+								class="
+								peer
+								appearance-none
+								size-7
+								cursor-pointer
+								rounded
+								border
+								border-solid
+								border-gray-400
+								shadow-inner
+								transition-all
+								checked:bg-blue-600
+							">
+							<span class="
+								absolute
+								text-white
+								opacity-0
+								peer-checked:opacity-100
+								top-1/2
+								left-1/2
+								transform
+								-translate-x-1/2
+								-translate-y-1/2
+								pointer-events-none
+								">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
+									<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+								</svg>
+							</span>
+							</label>
+							<label for="appearance-none-size-7"
+							class="cursor-pointer ml-2 text-slate-600 text-sm">size-7</label>
+						</div>
+
+						<!-- size: 14 -->
+						<div class="inline-flex items-center">
+							<label for="appearance-none-size-14" class="
+								flex items-center cursor-pointer relative
+							">
+							<input type="checkbox"
+								name="size-test"
+								value="size-14"
+								id="appearance-none-size-14"
+								class="
+								peer
+								appearance-none
+								size-14
+								cursor-pointer
+								rounded-md
+								border
+								border-solid
+								border-gray-400
+								shadow-inner
+								transition-all
+								checked:bg-pink-500
+							">
+							<span class="
+								absolute 
+								text-white
+								opacity-0
+								peer-checked:opacity-100
+								top-1/2
+								left-1/2
+								transform
+								-translate-x-1/2
+								-translate-y-1/2
+								pointer-events-none
+							">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
+									<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+								</svg>
+							</span>
+							</label>
+							<label for="appearance-none-size-14"
+							class="cursor-pointer ml-2 text-slate-600 text-sm">size-14</label>
+						</div>
+
+						<!-- size: 28 -->
+						<div class="inline-flex items-center">
+							<label for="appearance-none-size-28" class="
+								flex items-center cursor-pointer relative
+							">
+							<input type="checkbox"
+								name="size-test"
+								value="size-28"
+								id="appearance-none-size-28"
+								checked
+								class="
+								peer
+								appearance-none
+								size-28
+								cursor-pointer
+								rounded-lg
+								border
+								border-solid
+								border-gray-400
+								shadow-inner
+								shadow-gray-300
+								transition-all
+								checked:bg-green-600
+								checked:shadow-none
+							">
+							<span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
+									<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+								</svg>
+							</span>
+							</label>
+							<label for="appearance-none-size-28"
+							class="cursor-pointer ml-2 text-slate-600 text-sm">size-28</label>
+						</div>
+						
+						
+					</form>
+				</div>
+				<div>
+					<h3>HTML の実装と解説(size-7 版で解説)</h3>
+					<h4>タグ構造編</h4>
+					<pre>
+&lt;div&gt;
+	&lt;label&gt;
+		&lt;input type="checkbox"&gt;
+		&lt;span&gt;
+			&lt;!-- チェックマーク SVG --&gt;
+			&lt;svg&gt;
+				&lt;path&gt;&lt;/path&gt;
+			&lt;/svg&gt;
+		&lt;/span&gt;
+	&lt;/label&gt;
+	&lt;label&gt;テキストラベル&lt;/label&gt;
+&lt;/div&gt;
+					</pre>
+
+					<h4>構造 + スタイル編</h4>
+					<pre>
+&lt;!-- size: 7 -->
+&lt;div class="inline-flex items-center"&gt; &lt;!-- チェックボックスとチェックマーク SVG とラベルを縦方向センタリングで合わせる為の
+										inline-flex + items-center 指定 -->
+	
+	&lt;!-- この label タグはチェックマーク SVG 用のタグ。-->
+	&lt;label for="appearance-none-size-7" 
+	class="flex	items-center cursor-pointer relative
+	"&gt;
+	&lt;!--
+		flex: flexbox にする
+		items-center: 縦方向揃えはセンタリングにする
+		relative: の label タグを相対座標起点にする。
+	-->
+
+	&lt;!-- チェックボックス本体 -->
+	&lt;input type="checkbox"
+		name="size-test"
+		value="size-7"
+		id="appearance-none-size-7"
+		checked
+		class="
+		peer
+		appearance-none
+		size-7
+		cursor-pointer
+		rounded
+		border
+		border-solid
+		border-gray-400
+		shadow-inner
+		checked:bg-blue-600
+	"&gt;
+	&lt;!-- カスタムチェックボックスとしての挙動に関係のあるスタイルについてのみ解説
+		peer: チェックマーク SVG 側が peer-checked で opacity(不透明度)をコントロールするためのマーク的スタイル
+		appearance-none: デフォルトのチェックボックス描画を無効化。
+		checked:bg-blue-600: チェック時の背景カラーを指定
+	-->
+
+	&lt;!-- チェックマーク SVG を納めるための span タグ -->
+	&lt;span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"&gt;
+		&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1"&gt;
+			&lt;path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"&gt;&lt;/path&gt;
+		&lt;/svg&gt;
+	&lt;/span&gt;
+	&lt;!-- span タグに設定されたスタイルの解説
+		absolute: 親ブロックの領域を広げない + 先に relative 指定した label タグに対して座標指定する宣言
+					（この label タグは中身にテキストを持たないので実質的にチェックボックスと同じ位置・サイズになる。ハック？）
+		opacity-0: デフォルト状態ではチェックマークの不透明度 0 == 透明状態
+		peer-checked:opacity-100: peer のチェックマークがチェックされたら不透明度100 == 表示
+		top-1/2:
+		left-1/2:
+		transform:
+		-translate-x-1/2:
+		-translate-y-1/2:
+			→ SVG のサイズがチェックボックスより大きかったとしても、チェックボックスに対してセンタリングするための座標調整、と思われる。
+
+	-->
+	&lt;/label&gt;
+
+	&lt;!-- チェックボックスのテキストラベル用の label タグ-->
+	&lt;label for="appearance-none-size-7"
+	class="cursor-pointer ml-2 text-slate-600 text-sm"&gt;size-7&lt;/label&gt;
+&lt;/div&gt;
+					</pre>
+				</div>
+			</section>
+
+		</div>
+
+		
+		<section>
+			<h1>チェックボックス自体のアピアランスに関する結論</h1>
+			<div>
+				<p>多少以上にデザイン性にこだわる + 3大ブラウザで共通のデザインを目指すならば <code>appearance-none</code> でデフォルト描画をオフにしてフルコントロールするほかない。</p>
+				<p>もしくは割り切って見た目は各ブラウザ任せにする方針で、素の HTML だけで済ますのもよし。</p>
+			</div>
+		</section>
+
+		<section>
+			<h1>簡単に済ませる場合でも付けておいた方が良いスタイル</h1>
+			<p>
+				<ul>
+				<li><code>cursor-pointer</code>: カーソルを指マークにする。ラベル部分でもチェック出来ることを示せる。<code>label</code> と <code>input</code> の両方に指定が必要。</li>
+				<li><code>flex</code> + <code>justify-between</code> :雑ではあるが、等間隔でチェックボックスを配置出来る。<code>grid</code> で良いかもしれない</li>
+				</ul>
+			</p>
+			<div class="mt-4">
+				<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+			
+					<fieldset class="flex flex-1 max-w-md flex-wrap justify-between">
+						<div>
+							<input type="checkbox" name="animals" value="lion" id="animals-lion"
+							class="cursor-pointer">
+							<label for="animals-lion"
+							class="cursor-pointer">ライオン</label>
+						</div>
+			
+						<div>
+							<input type="checkbox" name="animals" value="hose" id="animals-hose" checked
+							class="cursor-pointer">
+							<label for="animals-hose"
+							class="cursor-pointer">馬</label>
+						</div>
+			
+						<div>
+							<input type="checkbox" name="animals" value="dog" id="animals-dog"
+							class="cursor-pointer">
+							<label for="animals-dog"
+							class="cursor-pointer">犬</label>
+						</div>
+			
+						<div>
+							<input type="checkbox" name="animals" value="cat" id="animals-cat"
+							class="cursor-pointer">
+							<label for="animals-cat"
+							class="cursor-pointer">猫</label>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</section>
+
+		<section>
+		<h1>公式にあった peer + checked を用いた ToDo リスト的なチェックリストサンプル</h1>
+		<div>
+				<p>こういうことも出来るというアイディアのネタ用に改変コピーしておく</p>
+				<form class="border border-solid rounded-md shadow-inner p-4 bg-gray-50">
+					<fieldset class="max-w-sm p-2 bg-slate-100 space-y-3">
+						<!-- リストの見出し -->
+						<legend class="bg-white rounded-md shadow-sm p-2 text-base font-semibold text-slate-900 dark:text-slate-200">今日の TODO</legend>
+
+						<!-- 朝起きる -->
+						<div class="grid grid-cols-[1fr_24px] items-center gap-6">
+							<label class="peer grid grid-cols-[auto_1fr] items-center gap-3 rounded-md px-2 hover:bg-slate-100">
+								<input type="checkbox" class="peer size-3.5 appearance-none rounded-sm border border-slate-300 accent-pink-500 dark:accent-pink-600 checked:appearance-auto" checked="">
+								<span class="select-none text-slate-700 peer-checked:text-slate-400 peer-checked:line-through">朝起きる</span>
+							</label>
+							<div class="size-[26px] rounded-md p-1 hover:bg-red-50 hover:text-red-500 peer-has-[:checked]:hidden">
+								<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+								</svg>
+							</div>
+						</div>
+
+						<!-- 朝ご飯食べる -->
+						<div class="grid grid-cols-[1fr_24px] items-center gap-6">
+							<label class="peer grid grid-cols-[auto_1fr] items-center gap-3 rounded-md px-2 hover:bg-slate-100">
+								<input type="checkbox" class="peer size-3.5 appearance-none rounded-sm border border-slate-300 accent-pink-500 dark:accent-pink-600 checked:appearance-auto">
+								<span class="select-none text-slate-700 peer-checked:text-slate-400 peer-checked:line-through">朝ご飯食べる</span>
+							</label>
+							<div class="size-[26px] rounded-md p-1 hover:bg-red-50 hover:text-red-500 peer-has-[:checked]:hidden">
+								<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+								</svg>
+							</div>
+						</div>
+
+						<!--お昼ご飯食べる -->
+						<div class="grid grid-cols-[1fr_24px] items-center gap-6">
+							<label class="peer grid grid-cols-[auto_1fr] items-center gap-3 rounded-md px-2 hover:bg-slate-100">
+								<input type="checkbox" class="peer size-3.5 appearance-none rounded-sm border border-slate-300 accent-pink-500 dark:accent-pink-600 checked:appearance-auto">
+								<span class="select-none text-slate-700 peer-checked:text-slate-400 peer-checked:line-through">お昼ご飯食べる</span>
+							</label>
+							<div class="size-[26px] rounded-md p-1 hover:bg-red-50 hover:text-red-500 peer-has-[:checked]:hidden">
+								<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+								</svg>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+		</div>
+		</section>
+
+	</div>
+</body>
