@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../tailwind.min.css" rel="stylesheet">
+  <title>relative と absolute について</title>
+</head>
+<body>
+  <div class="m-4">
+		<h1>TailwindCSS における relative と absolute について</h1>
+		<p>TailwindCSS における <code>relative</code> と <code>absolute</code> とは CSS における <code>position</code> 指定の種類のこと。</p>
+		<p>詳細: <a href="https://developer.mozilla.org/ja/docs/Web/CSS/position">“position - CSS: カスケーディングスタイルシート | MDN”</a></p>
+		<div class="h-32 text-pink-600"><p>この辺に変なブロックが出ているがこれは最後の実験によるもの</p></div>
+		<h1 class="mt-6 mb-4">実例サンプル</h1>
+		<section>
+			<h2>なし - なし</h2>
+			<div class="max-w-md p-4 layer-1-slate">
+				<div class="p-4 layer-2-slate">
+					<div class="size-12 layer-3-slate">子</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2>relative - 無し</h2>
+			<div class="max-w-md p-4 layer-1-slate">
+				<div class="relative p-4 layer-2-slate">
+					<div class="size-12 layer-3-slate">子</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2>relative - absolute</h2>
+			<div class="max-w-md p-4 layer-1-slate">
+				<div class="relative p-4 layer-2-slate">
+					<div class="absolute size-12 layer-3-slate">abs</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2>なし - absolute</h2>
+			<div class="max-w-md p-4 layer-1-slate">
+				<div class="p-4 layer-2-slate">
+					<div class="absolute size-12 layer-3-slate">abs</div>
+				</div>
+			</div>
+		</section>
+
+		<h1 class="mt-6 mb-4">？？何かテキストを入れてみる</h1>
+		<section>
+			<h2>なし - なし</h2>
+			<div class="max-w-md p-4 layer-1-slate">
+			<p>ルートブロック</p>
+				<div class="p-4 layer-2-slate">
+				<p>親ブロック</p>
+				<p>2段落目</p>
+					<div class="size-12 layer-3-slate">子</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2>relative - 無し</h2>
+			<div class="max-w-md p-4 layer-1-slate">
+			<p>ルートブロック</p>
+				<div class="relative p-4 layer-2-slate">
+				<p>親ブロック(relative)</p>
+				<p>2段落目</p>
+					<div class="size-12 layer-3-slate">子</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2>relative - absolute</h2>
+			<div class="max-w-md p-4 layer-1-slate">
+			<p>ルートブロック</p>
+				<div class="relative p-4 layer-2-slate">
+				<p>親ブロック(relative)</p>
+				<p>2段落目</p>
+					<div class="absolute size-12 layer-3-slate">abs</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2>なし - absolute</h2>
+			<div class="max-w-md p-4 layer-1-slate">
+			<p>ルートブロック</p>
+				<div class="p-4 layer-2-slate">
+				<p>親ブロック</p>
+				<p>2段落目</p>
+					<div class="absolute size-12 layer-3-slate">abs</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h1 class="mt-6 mb-4">mdn の解説で absolute の意味を理解する</h1>
+			<div>
+				<blockquote class="ml-3 pl-2 italic border-l-2 border-l-sky-200">
+				<p><code>absolute</code></p>
+				<p>要素は文書の通常のフローから除外され、<strong>ページレイアウト内にこの要素のための空間が作成されません。</strong>この要素に直近の位置指定されている祖先があればそれに対して、そうでなければ、初期の包含ブロックに対して相対配置されます。最終的な位置は <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> の値によって決定されます。</p>
+				<p>この値では、 <code>z-index</code> の値が <code>auto</code> ではない場合、新しい重ね合わせコンテキストを作成します。絶対位置指定ボックスのマージンは、他の要素のマージンと相殺されません。</p>
+				</blockquote>
+				<h2 class="mt-4 mb-2">つまり</h2>
+				<ul>
+					<li><code>absolute</code> は親ブロックの領域を広げないという特徴がある</li>
+					<li><code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> によって位置指定が出来る。ただし以下の制限がある</li>
+					<ul>
+						<li>親ブロックなどが <code>position</code> デフォルトの <code>static</code> の場合 <code>top</code>, <code>right</code> 等による位置指定の基準とはならない</li>
+						<lI>その場合親ブロックを遡って <code>relative</code> の指定が見つからない場合、<code>body</code> タグ（の直下のブロックのセンター？）を基準座標として位置が決まる。</lI>
+						<li>ただし、位置指定自体を行っていない場合は元の位置にとどまる。</li>
+					</ul>
+				</ul>
+
+				<p>「なし - absolute」と「relative - absolute」の結果が同じになるのは <code>top</code>, <code>right</code>... 等による位置指定をしていないのが原因。</p>
+			</div>
+		</section>
+
+		<h1 class="mt-6 mb-4">「なし - absolute」と「relative - absolute」のケースで位置指定をしてみる</h1>
+
+		<section>
+			<h2 class="mt-4 mb-2">relative - absolute</h2>
+			<div class="max-w-md p-4 layer-1-slate">
+				<div class="relative p-4 layer-2-slate">
+					<div class="absolute h-12 layer-3-slate">rel - abs / 位置指定無し</div>
+					<div class="absolute top-6 left-48 h-12 layer-3-slate">rel - abs / top-6 left-48</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2 class="mt-4 mb-2">なし - absolute</h2>
+			<p>ここで位置指定している <code>absolute</code> なブロックはこのページの上の方に現れる。</p>
+			<div class="max-w-md p-4 layer-1-slate">
+				<div class="p-4 layer-2-slate">
+					<div class="absolute h-12 layer-3-slate">なし - abs / 位置指定無し</div>
+					<div class="absolute top-32 left-32 h-12 layer-3-slate">なし - abs / top-32 left-32</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+</body>
