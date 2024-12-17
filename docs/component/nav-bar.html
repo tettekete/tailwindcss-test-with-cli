@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./nav-bar.css" rel="stylesheet">
+  <title>簡単な nav-bar の実装</title>
+</head>
+<body>
+  <div class="m-4">
+	<h1>簡単な nav-bar の実装</h1>
+	<p>実装は <a href="nav-bar.src.css">nav-bar.src.css</a> を参照。</p>
+	<section>
+		<div>
+			<h2>横 nav-var - flex 版</h2>
+			<div class="max-w-4xl">
+				<nav class="flex">
+					<a href="#" class="flex-auto horizonal-navbar-inactive-item">Home</a>
+					<a href="#" class="flex-auto horizonal-navbar-active-item">Services</a>
+					<a href="#" class="flex-auto horizonal-navbar-inactive-item">Pricing</a>
+					<a href="#" class="flex-auto horizonal-navbar-inactive-item">Contact</a>
+					<a href="#" class="flex-auto horizonal-navbar-inactive-item">About Us</a>
+					<a href="#" class="flex-auto horizonal-navbar-inactive-item">Blog</a>
+					<a href="#" class="flex-auto horizonal-navbar-inactive-item">FAQ</a>
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div>
+			<h2>横 nav-var - grid 版</h2>
+			<nav class="grid grid-flow-col auto-cols-auto max-w-4xl">
+				<a href="#" class="horizonal-navbar-inactive-item">Home</a>
+				<a href="#" class="horizonal-navbar-active-item">Services</a>
+				<a href="#" class="horizonal-navbar-inactive-item">Pricing</a>
+				<a href="#" class="horizonal-navbar-inactive-item">Contact</a>
+				<a href="#" class="horizonal-navbar-inactive-item">About Us</a>
+				<a href="#" class="horizonal-navbar-inactive-item">Blog</a>
+				<a href="#" class="horizonal-navbar-inactive-item">FAQ</a>
+			</nav>
+		</div>
+	</section>
+
+	<section>
+		<div>
+			<h2>縦 nav-var - flex 版</h2>
+			<div class="max-w-36">
+				<nav class="flex flex-col">
+					<a href="#" class="flex-auto vertival-navbar-inactive-item">Home</a>
+					<a href="#" class="flex-auto vertival-navbar-inactive-item">Services</a>
+					<a href="#" class="flex-auto vertival-navbar-inactive-item">Pricing</a>
+					<a href="#" class="flex-auto vertival-navbar-inactive-item">Contact</a>
+					<a href="#" class="flex-auto vertival-navbar-inactive-item">About Us</a>
+					<a href="#" class="flex-auto vertival-navbar-active-item">Blog</a>
+					<a href="#" class="flex-auto vertival-navbar-inactive-item">FAQ</a>
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div>
+			<h2>縦 nav-var - grid 版</h2>
+			<nav class="grid grid-flow-row auto-cols-auto max-w-36">
+				<a href="#" class="vertival-navbar-inactive-item">Home</a>
+				<a href="#" class="vertival-navbar-inactive-item">Services</a>
+				<a href="#" class="vertival-navbar-inactive-item">Pricing</a>
+				<a href="#" class="vertival-navbar-inactive-item">Contact</a>
+				<a href="#" class="vertival-navbar-inactive-item">About Us</a>
+				<a href="#" class="vertival-navbar-active-item">Blog</a>
+				<a href="#" class="vertival-navbar-inactive-item">FAQ</a>
+			</nav>
+		</div>
+	</section>
+	</div>
+</body>
