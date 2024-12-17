@@ -7,6 +7,7 @@
 - [ページレイアウト・フレーミング関連](#ページレイアウトフレーミング関連)
 	- [サンプル HTML 系](#サンプル-html-系)
 		- [ページレイアウト系](#ページレイアウト系)
+		- [コンポーネント系](#コンポーネント系)
 		- [form 系](#form-系)
 		- [その他・一般](#その他一般)
 	- [TailwindCSS の各クラスの挙動調査系](#tailwindcss-の各クラスの挙動調査系)
@@ -29,9 +30,14 @@
 - [よくあるページレイアウトのサンプル](layout/basic-layout.html)([ソース](https://github.com/tettekete/tailwindcss-test-with-cli/blob/main/docs/layout/basic-layout.html))
 - [ヘッダとフッタが上下に張り付くよくあるレイアウトのサンプル](layout/fixed-header-footer.html)([ソース](https://github.com/tettekete/tailwindcss-test-with-cli/blob/main/docs/layout/fixed-header-footer.html))
 
-#### form 系
+#### コンポーネント系
 
 - [よくありそうなログインコンポーネント](component/login.html)
+- [“簡単な nav-bar の実装”](component/nav-bar.html)
+
+
+#### form 系
+
 - [“`input type="text"` 系インプットフィールドサンプル”](forms/input-text.html)
 - [“`button` - Bootstrap ライクなボタンサンプル”](forms/buttons-like-bootstrap.html)
 - [“チェックボックスのサンプル”](forms/check-box.html)
