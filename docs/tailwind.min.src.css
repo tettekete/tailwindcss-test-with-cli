@@ -1,50 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import './styles/basic-html.css';
 
 /* TailwindCSS の各クラス見本用に、最低限のタグカスタマイズのみを行うための
 tailwindcss コマンド 用 CSS ファイル
 */
 
-@layer base {
-  h1 {
-    @apply text-3xl font-bold text-black mt-6 mb-4;
-  }
-  h2 {
-    @apply text-2xl font-semibold text-gray-800 mt-5 mb-3;
-  }
-  h3 {
-    @apply text-lg font-semibold text-black mt-4 mb-2;
-  }
-  h4 {
-    @apply text-base font-medium text-black;
-  }
-  a {
-    @apply text-blue-500 underline;
-  }
-  a:hover {
-    @apply text-blue-700;
-  }
-  code {
-	@apply text-xs p-0.5 font-mono font-light rounded bg-slate-100 text-slate-500;
-  }
-
-  pre {
-	@apply text-sm font-mono font-light rounded bg-slate-100 text-slate-500 m-2 p-2 whitespace-pre overflow-x-auto;
-  }
-
-  p {
-	@apply m-1;
-  }
-
-  ol {
-	@apply ml-2 list-decimal list-inside;
-  }
-
-  ul {
-	@apply ml-2 list-disc list-inside;
-  }
-}
 
 @layer components {
   .layer-1-slate {
