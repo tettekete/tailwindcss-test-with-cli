@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const kOutputFileName = 'index.generated.html';
+
 // 指定されたディレクトリから再帰的に HTML ファイルと markdown ファイルを収集
 function getHtmlFiles(dir, fileList = [],ignore_regex = [])
 {
@@ -29,7 +31,7 @@ function getHtmlFiles(dir, fileList = [],ignore_regex = [])
 
 			if (path.extname(file) === '.html')
 			{
-				if( path.relative(dir, filePath) !== 'index.html' )
+				if( path.relative(dir, filePath) !== kOutputFileName )
 				{
 					fileList.push({
 						path: filePath,
@@ -123,8 +125,8 @@ function getTitleFromMarkdown( file_path )
 	return undefined;
 }
 
-// HTML ファイルへのリンクをまとめた index.html を生成
-function generateIndexHtml(dir, outputFile = 'index.html') {
+// HTML ファイルへのリンクをまとめた kOutputFileName を生成
+function generateIndexHtml(dir, outputFile = kOutputFileName ) {
   const htmlFiles = getHtmlFiles(dir ,[] , [/_[^\/]+$/]);
   const sortedHtmlFiles = sortHtmlFilesByDepthAndName(htmlFiles);
 
@@ -179,4 +181,4 @@ catch( e )
 	process.exit(1);
 }
 
-generateIndexHtml(targetDir ,'index.html');
+generateIndexHtml(targetDir ,kOutputFileName);
