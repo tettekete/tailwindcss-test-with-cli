@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="titled-block.css" rel="stylesheet">
+  <title>タイトル枠付きのブロック</title>
+</head>
+<body class="m-4">
+  <div>
+		<!-- <div class=""> -->
+			<div class="titled-block">
+				<div class="titled-block-title">タイトルとか</div>
+				<div>
+					<p>コンテンツ</p>
+					<p>コンテンツ</p>
+					<p>コンテンツ</p>
+				</div>	
+			</div>
+
+			<div class="titled-block">
+				<div class="titled-block-title">寿限無 寿限無 五却のすりきれ
+海砂利水魚の 水行末 雲来末 風来末
+食う寝る処に住む処 藪ら柑子の藪柑子
+パイポパイポ パイポのシューリンガン
+シューリンガンのグーリンダイ
+グーリンダイのポンポコピーのポンポコナーの
+長久命の 長助</div>
+				<div>
+					<p>コンテンツ</p>
+					<p>コンテンツ</p>
+					<p>コンテンツ</p>
+				</div>	
+			</div>
+
+		<!-- </div> -->
+	</div>
+	<div>
+	<h2>解説とかソースとか</h2>
+	<p>本当はタイトルブロックの横幅は <code>max-w-[90%]</code> とかにしたいが <code>[]</code> によるカスタマイズでは % 指定出来無い。代わりに <code>tailwind.config.js</code> で設定する必要があるため（汎用性がなくなるので）諦めた。</p>
+	<p>→ <a href="https://tailwindcss.com/docs/max-width#using-custom-values">“Max-Width - Tailwind CSS”</a></p>
+	<h3>HTML</h3>
+	<pre>
+&lt;div class="titled-block"&gt;
+	&lt;div class="titled-block-title"&gt;タイトルとか&lt;/div&gt;
+	&lt;div&gt;
+		&lt;p&gt;コンテンツ&lt;/p&gt;
+		&lt;p&gt;コンテンツ&lt;/p&gt;
+		&lt;p&gt;コンテンツ&lt;/p&gt;
+	&lt;/div&gt;	
+&lt;/div&gt;
+	</pre>
+
+	<h3>TailwindCSS</h3>
+	<pre>
+@layer components {
+	.titled-block {
+		@apply
+			relative
+			border
+			rounded-md
+			mt-8
+			pt-6
+			;
+	}
+
+	.titled-block-title {
+		@apply
+			absolute
+			-top-4
+			left-6
+			border
+			border-gray-400
+			rounded
+			bg-white
+			py-1
+			px-2
+			whitespace-nowrap
+			overflow-hidden
+			truncate
+			max-w-full
+			;
+	}
+}
+	</pre>
+	</div>
+</body>

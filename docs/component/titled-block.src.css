@@ -1,0 +1,31 @@
+@import '../tailwind.min.src.css';
+
+@layer components {
+	.titled-block {
+		@apply
+			relative
+			border
+			rounded-md
+			mt-8
+			pt-6
+			;
+	}
+
+	.titled-block-title {
+		@apply
+			absolute
+			-top-4
+			left-6
+			border
+			border-gray-400
+			rounded
+			bg-white
+			py-1
+			px-2
+			whitespace-nowrap
+			overflow-hidden
+			truncate
+			max-w-full
+			;
+	}
+}

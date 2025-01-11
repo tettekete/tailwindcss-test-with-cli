@@ -40,6 +40,7 @@
 
 - [よくありそうなログインコンポーネント](component/login.html)
 - [“簡単な nav-bar の実装”](component/nav-bar.html)
+- [見出し付きのブロック](component/titled-block.html)（デバッグ用とかの簡単な表示の奴）
 
 
 #### form 系
