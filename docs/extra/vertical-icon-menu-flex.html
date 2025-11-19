@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>inset + margin/padding の違い</title>
+<style>
+.side-menu {
+  position: fixed;
+  top: 16px;
+  bottom: 16px;
+  right: 10px;
+	background-color: #dfd;
+
+  /* 画面の高さがそのままコンテナの高さ上限になる */
+  /* height: 100vh; */
+
+  /* 縦に並べるフレックスコンテナ＋必要になったら折り返す */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  /* カラム（列）を右側に寄せる → 新しい列は左に増える */
+  /* align-content: flex-end; 効果は無い */
+
+  /* padding: 8px 4px; inset あるいは top,bottom,right で制御しない場合 padding を使うのもアリ*/
+  row-gap: 8px;    /* 上下間の隙間 */
+  column-gap: 4px; /* 左右の隙間 */
+}
+
+/* このスタイル定義は基本的には丸いアイコンボタン表示を行う為の
+スタイル定義であって「縦並びの wrap するアイコンメニュー」の動作とは関係ない。
+アイコンのサイズを決めておくと（高さが折り返しの「行ピッチ」になる） */
+.side-menu__item {
+  /* flex: 0 0 auto; */
+  width: 48px;
+  height: 48px;
+
+  border-radius: 999px;
+  border: none;
+  background: #333;
+  color: #fff;
+  font-size: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+</head>
+<body>
+
+<nav class="side-menu">
+  <button class="side-menu__item">🏠</button>
+  <button class="side-menu__item">🔍</button>
+  <button class="side-menu__item">⭐</button>
+  <button class="side-menu__item">⚙️</button>
+  <button class="side-menu__item">❓</button>
+  <button class="side-menu__item">📁</button>
+  <button class="side-menu__item">🗑️</button>
+  <button class="side-menu__item">📊</button>
+  <button class="side-menu__item">💬</button>
+  <button class="side-menu__item">🔔</button>
+  <button class="side-menu__item">🌐</button>
+  <button class="side-menu__item">🧭</button>
+</nav>
+
+</body>
+</html>
