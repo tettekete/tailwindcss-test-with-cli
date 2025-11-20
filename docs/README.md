@@ -64,4 +64,4 @@
 ## 番外編
 
 - [Flexbox とはなんぞや](extra/flexbox.html) - Flexbox 理解のための実験 HTML(非 TailwindCSS)
-- [折り返しする縦アイコンメニュー・flex版](extra/vertical-icon-menu-grid.html)
+- [折り返しする縦アイコンメニュー・flex版](extra/vertical-icon-menu-flex.html)
